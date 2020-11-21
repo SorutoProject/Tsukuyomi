@@ -1,11 +1,20 @@
 <template>
     <div>
         <div class="text-h5">
-            <p><v-btn icon elevation="0" to="/">
+            <p><v-btn icon elevation="0" to="/" text>
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn>　
             新しいイベントを作成</p></div>
-            <p><v-text-field v-model="newEvent.title" label="イベントの名称" placeholder="例：文化祭"></v-text-field></p>
+            <p>
+                <v-text-field
+                    v-model="newEvent.title"
+                    label="イベントの名称"
+                    placeholder="例：文化祭"
+                    counter="50"
+                    maxlength="50"
+                    clearable    
+                ></v-text-field>
+            </p>
             <p>
                 <span class="text-caption">イベント開始日</span><br>     
                 <v-date-picker
