@@ -5,18 +5,20 @@
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn>　
             新しいイベントを作成</p></div>
-            <v-text-field v-model="newEvent.title" label="イベントの名称" placeholder="例：文化祭"></v-text-field>
-            <span class="text-caption">イベント開始日</span>   
-        <v-row justify="center">       
-            <v-date-picker
+            <p><v-text-field v-model="newEvent.title" label="イベントの名称" placeholder="例：文化祭"></v-text-field></p>
+            <p>
+                <span class="text-caption">イベント開始日</span><br>     
+                <v-date-picker
                 v-model="newEvent.date"
-                full-width
                 locale="ja-jp"
                 :day-format="date => new Date(date).getDate()"
                 :min="today"
                 ></v-date-picker>
-        </v-row>
-        <v-btn @click="submit" :disabled="newEvent.title == '' || newEvent.date == ''"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
+            </p>
+            <p>
+                <v-btn @click="submit" :disabled="newEvent.title == '' || newEvent.date == ''"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
+            </p>
+        
     </div>
 </template>
 <script>
