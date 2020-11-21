@@ -6,21 +6,33 @@
             </v-btn>　
             新しいイベントを作成</p></div>
             <v-text-field v-model="newEvent.title" label="イベントの名称" placeholder="例：文化祭"></v-text-field>
-        <v-row justify="center">            
-            <v-date-picker v-model="newEvent.date" full-width locale="ja-jp"></v-date-picker>
+            <span class="text-caption">イベント開始日</span>   
+        <v-row justify="center">       
+            <v-date-picker
+                v-model="newEvent.date"
+                full-width
+                locale="ja-jp"
+                :day-format="date => new Date(date).getDate()"
+                :min="today"
+                ></v-date-picker>
         </v-row>
         <v-btn @click="submit" :disabled="newEvent.title == '' || newEvent.date == ''"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
     </div>
 </template>
 <script>
 module.exports = {
-    data:function(){
+    data(){
         return {
             "newEvent":{
                 "title":"",
                 "date":""
-            }
+            },
+            "today":""
         }
+    },
+    mounted(){
+        const today = new Date();
+        this.today = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     },
     methods:{
         submit(){
