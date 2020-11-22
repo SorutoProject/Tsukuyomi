@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsukuyomi</title>
+    <title>Tsukuyomi(beta version)</title>
     <link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="components/vuetify/vuetify.min.css">
 
@@ -19,7 +19,7 @@
             <v-card class="overflow-hidden">
                 <v-app-bar>
                     <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-                    <v-toolbar-title>ツクヨミ</v-toolbar-title>          
+                    <v-toolbar-title>ツクヨミ(β版)</v-toolbar-title>          
                 </v-app-bar>
                 <!--left menu-->
                 <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -66,8 +66,10 @@ const routes = [
     {path: "/detail/:yyyymmdd/:title", component: httpVueLoader("./pages/detail.vue")},
     //confirm page
     {path: "/add/:yyyymmdd/:title", component: httpVueLoader("./pages/addConfirm.vue")},
-    //sharing page
+    //sharing confirm page
     {path: "/add/:yyyymmdd/:title/:share", component: httpVueLoader("./pages/addConfirm.vue")},
+    //sharing page
+    {path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue")},
     //new event maker
     {path: "/new", component:httpVueLoader("./pages/new.vue")},
     //error page
