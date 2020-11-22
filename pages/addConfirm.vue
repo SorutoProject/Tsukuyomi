@@ -6,6 +6,7 @@
             <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
             <tsukuyomi-card :title="newEvent.title" :date="this.$route.params.yyyymmdd" elevation="0"></tsukuyomi-card>
+            <p class="text--secondary text-caption">このページが外部サイトのリンクなどから表示された場合、このイベントは、他のユーザーが作成したものです。<br>このイベントを追加することによる損害などについて、開発者は一切の責任を負いません。</p>
             <p>
                 <v-btn to="/new" text>
                     キャンセル
@@ -17,7 +18,7 @@
         </div>
         <div v-if="isShare">
             <p class="text-h5">イベントの共有</p>
-            <p>次の共有されたイベントを追加しますか？</p>
+            <p>次の共有されたイベントをイベントリストに追加しますか？</p>
             <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
             <tsukuyomi-card :title="newEvent.title" :date="this.$route.params.yyyymmdd" elevation="0"></tsukuyomi-card>
