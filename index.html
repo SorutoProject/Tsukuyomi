@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌙 Tsukuyomi(beta version)</title>
+    <meta name="description" content="「あと何日？」に特化したWebアプリ">
+
+    <meta property="og:title" content="Tsukiyomi" />
+
+    <meta property="og:description" content="「あと何日？」に特化したWebアプリ" />
+
+    <meta property="og:site_name" content="Tsukiyomi" />
+
+    <meta property="og:image" content=" tsukiyomi.png" />
+
+    <title>Tsukuyomi</title>
     <link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="components/vuetify/vuetify.min.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="tsukuyomi.png">
 
     <script src="components/vue/vue.js"></script>
     <script src="components/vuetify/vuetify.js"></script>
@@ -14,13 +26,14 @@
     <script src="components/httpvueloader/httpVueLoader.js"></script>
     <script src="components/dexiejs/dexie.min.js"></script>
 </head>
+
 <body>
     <div id="app">
         <v-app>
             <v-card class="overflow-hidden">
                 <v-app-bar>
                     <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-                    <v-toolbar-title>ツクヨミ(β版)</v-toolbar-title>          
+                    <v-toolbar-title>ツクヨミ</v-toolbar-title>
                 </v-app-bar>
                 <!--left menu-->
                 <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -55,56 +68,59 @@
             <v-container>
                 <router-view></router-view>
             </v-container>
-            
+
         </v-app>
     </div>
 </body>
 <script>
-const routes = [
-    //main page
-    {path: "/", component: httpVueLoader("./pages/index.vue")},
-    //detail page
-    {path: "/detail/:yyyymmdd/:title", component: httpVueLoader("./pages/detail.vue")},
-    //confirm page
-    {path: "/add/:yyyymmdd/:title", component: httpVueLoader("./pages/addConfirm.vue")},
-    //sharing confirm page
-    {path: "/add/:yyyymmdd/:title/:share", component: httpVueLoader("./pages/addConfirm.vue")},
-    //sharing page
-    {path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue")},
-    //new event maker
-    {path: "/new", component:httpVueLoader("./pages/new.vue")},
-    //alert to change browser
-    {path: "/alert", component:httpVueLoader("./pages/alert.vue")},
-    //error page
-    {path: "*", component:httpVueLoader("./pages/invalid.vue")},
-]
+    const routes = [
+        //main page
+        { path: "/", component: httpVueLoader("./pages/index.vue") },
+        //detail page
+        { path: "/detail/:yyyymmdd/:title", component: httpVueLoader("./pages/detail.vue") },
+        //confirm page
+        { path: "/add/:yyyymmdd/:title", component: httpVueLoader("./pages/addConfirm.vue") },
+        //sharing confirm page
+        { path: "/add/:yyyymmdd/:title/:share", component: httpVueLoader("./pages/addConfirm.vue") },
+        //sharing page
+        { path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue") },
+        //new event maker
+        { path: "/new", component: httpVueLoader("./pages/new.vue") },
+        //alert to change browser
+        { path: "/alert", component: httpVueLoader("./pages/alert.vue") },
+        //embed card
+        { path: "/embed/:yyyymmdd/:title/", component: httpVueLoader("./pages/embed.vue") },
+        //error page
+        { path: "*", component: httpVueLoader("./pages/invalid.vue") },
+    ]
 
-const router = new VueRouter({
-    routes
-});
-const app = new Vue({
-    el:"#app",
-    router,
-    vuetify: new Vuetify(),
-    data:{
-        "drawer":false
-    },
-    mounted:function(){
-        //go to alert page when accessed by "in app browser."
-        const ua = navigator.userAgent.toLowerCase();
-        const isOpenedInApp = /fb|line/.test(ua);
-        if(isOpenedInApp === true){
-            router.replace("/alert")
+    const router = new VueRouter({
+        routes
+    });
+    const app = new Vue({
+        el: "#app",
+        router,
+        vuetify: new Vuetify(),
+        data: {
+            "drawer": false
+        },
+        mounted: function () {
+            //go to alert page when accessed by "in app browser."
+            const ua = navigator.userAgent.toLowerCase();
+            const isOpenedInApp = /fb|line/.test(ua);
+            if (isOpenedInApp === true) {
+                router.replace("/alert")
+            }
         }
-    }
-    
-});
+
+    });
 </script>
 <script>
-window.addEventListener("load", function(){
-    if('serviceWorker' in navigator){
-        navigator.serviceWorker.register("./sw.js");
-    }
-});
+    window.addEventListener("load", function () {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("./sw.js");
+        }
+    });
 </script>
+
 </html>
