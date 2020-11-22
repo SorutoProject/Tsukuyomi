@@ -4,7 +4,8 @@
             <p><v-btn icon elevation="0" to="/" text>
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn>　
-            新しいイベントを作成</p></div>
+            新しいイベントを作成</p>
+        </div>
             <p>
                 <v-text-field
                     v-model="newEvent.title"
@@ -25,7 +26,7 @@
                 ></v-date-picker>
             </p>
             <p>
-                <v-btn @click="submit" :disabled="newEvent.title == '' || newEvent.date == ''"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
+                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" class="teal white--text"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
             </p>
         
     </div>

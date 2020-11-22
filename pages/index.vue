@@ -9,9 +9,12 @@
                 <v-col
                     v-for="event in events"
                     :key="event.title"
-                    cols="3"
+                    col="12"
+                    sm="6"
+                    md="3"
+                    xl="2"
                 >
-                    <tsukuyomi-card :title="event.title" :date="event.date"></tsukuyomi-card>
+                    <tsukuyomi-card :title="event.title" :date="event.date" removable="true" sharable="true"></tsukuyomi-card>
                 </v-col>
             </v-row>
         </v-container>

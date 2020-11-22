@@ -6,7 +6,7 @@
             </v-btn>　
             イベントの詳細</p>
         </div>
-    <p>あと<span v-text="remainDayCount"></span>日</p>
+    <p>あと<span v-text="remainDayCount" class="text--primary text-h6"></span>日</p>
     <p>{{$route.params.title}}</p>
 </div>
 </template>
