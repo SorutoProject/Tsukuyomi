@@ -75,8 +75,8 @@
     </div>
     <div>
         <p class="text--secondary">もしくは</p>
-        <v-btn text :href="gCalendarURL">
-            <v-icon>mdi-calendar</v-icon>　Googleカレンダーにこのイベントを追加
+        <v-btn text :href="gCalendarURL" target="_blank">
+            <v-icon>mdi-calendar</v-icon>　Googleカレンダーに追加
         </v-btn>
     </div>
   </div>
