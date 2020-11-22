@@ -24,13 +24,7 @@
       </v-snackbar>
 
       <!--LINE-->
-      <v-btn
-        icon
-        x-large
-        color="#00b904"
-        :href="'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(shareURL + '?openExternalBrowser=1')"
-        target="_blank"
-      >
+      <v-btn icon x-large color="#00b904" :href="LINEShareURL" target="_blank">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -55,7 +49,9 @@
         x-large
         color="#55ACEE"
         :href="
-          'https://twitter.com/share?url=' + shareURLEncoded + '&hashtags=ツクヨミ'
+          'https://twitter.com/share?url=' +
+          shareURLEncoded +
+          '&hashtags=ツクヨミ'
         "
         target="_blank"
       >
@@ -67,17 +63,19 @@
         icon
         x-large
         color="#3B5998"
-        :href="'https://www.facebook.com/sharer/sharer.php?u=' + shareURLEncoded"
+        :href="
+          'https://www.facebook.com/sharer/sharer.php?u=' + shareURLEncoded
+        "
         target="_blank"
       >
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
     </div>
     <div>
-        <p class="text--secondary">もしくは</p>
-        <v-btn text :href="gCalendarURL" target="_blank">
-            <v-icon>mdi-calendar</v-icon>　Googleカレンダーに追加
-        </v-btn>
+      <p class="text--secondary">もしくは</p>
+      <v-btn text :href="gCalendarURL" target="_blank">
+        <v-icon>mdi-calendar</v-icon>　Googleカレンダーに追加
+      </v-btn>
     </div>
   </div>
 </template>
@@ -92,33 +90,46 @@ module.exports = {
         "/" +
         encodeURIComponent(this.$route.params.title) +
         "/share",
-        shareURLEncoded:encodeURIComponent(new URL("./", location.href).href +
-        "#/add/" +
-        this.$route.params.yyyymmdd +
-        "/" +
-        encodeURIComponent(this.$route.params.title) +
-        "/share"),
+      shareURLEncoded: encodeURIComponent(
+        new URL("./", location.href).href +
+          "#/add/" +
+          this.$route.params.yyyymmdd +
+          "/" +
+          encodeURIComponent(this.$route.params.title) +
+          "/share"
+      ),
+      LINEShareURL:
+        "https://social-plugins.line.me/lineit/share?url=" +
+        encodeURIComponent(
+          new URL("./", location.href).href +
+            "?openExternalBrowser=1#/add/" +
+            this.$route.params.yyyymmdd +
+            "/" +
+            encodeURIComponent(this.$route.params.title) +
+            "/share"
+        ),
       copied: false,
-      gCalendarURL:""
+      gCalendarURL: "",
     };
   },
-  mounted(){
-      //Create google calendar url
+  mounted() {
+    //Create google calendar url
 
-      const zerofill = function(num){
-          return ('0'+num).slice(-2);
-      }
-      //get UTC
-      const date = new Date(this.$route.params.yyyymmdd);
-      const utc = date.getUTCFullYear() +
-    		zerofill(date.getUTCMonth()+1) +
-    		zerofill(date.getUTCDate()) +
-    		'T' +
-    		zerofill(date.getUTCHours()) +
-    		zerofill(date.getUTCMinutes()) +
-    		zerofill(date.getUTCSeconds()) +
-            'Z';
-        this.gCalendarURL = `https://www.google.com/calendar/event?action=TEMPLATE&text=${this.$route.params.title}&dates=${utc}/${utc}&trp=false`;
+    const zerofill = function (num) {
+      return ("0" + num).slice(-2);
+    };
+    //get UTC
+    const date = new Date(this.$route.params.yyyymmdd);
+    const utc =
+      date.getUTCFullYear() +
+      zerofill(date.getUTCMonth() + 1) +
+      zerofill(date.getUTCDate()) +
+      "T" +
+      zerofill(date.getUTCHours()) +
+      zerofill(date.getUTCMinutes()) +
+      zerofill(date.getUTCSeconds()) +
+      "Z";
+    this.gCalendarURL = `https://www.google.com/calendar/event?action=TEMPLATE&text=${this.$route.params.title}&dates=${utc}/${utc}&trp=false`;
   },
   methods: {
     copyURL() {
