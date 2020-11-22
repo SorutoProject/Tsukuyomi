@@ -23,8 +23,8 @@
           <v-btn icon v-if="sharable" :to="'/share/' + date + '/' + title">
             <v-icon>mdi-share-variant</v-icon>
           </v-btn>
-          <v-btn icon v-if="addable" :href="addURL" target="_blank">
-            <v-icon>mdi-plus</v-icon>
+          <v-btn text v-if="addable" :href="addURL" target="_blank">
+            <v-icon>mdi-plus</v-icon> Tsukuyomiに追加
           </v-btn>
         </v-card-actions>
       </div>
