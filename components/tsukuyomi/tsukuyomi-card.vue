@@ -94,7 +94,4 @@ module.exports = {
   position: absolute;
   width: 100%;
 }
-.v-card__text{
-  padding-bottom:3px;
-}
 </style>
