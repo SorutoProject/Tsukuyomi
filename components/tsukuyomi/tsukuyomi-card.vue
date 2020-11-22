@@ -40,7 +40,7 @@
             <span class="text-h6 text--primary">削除確認</span>
             <v-card-title>{{ title }}</v-card-title>
             <v-card-subtitle>{{ date }}</v-card-subtitle>
-            <span class="text--primary">このイベントを削除しますか？</span>
+            <span class="text--primary">削除しますか？</span>
           </v-card-text>
           <v-card-actions class="pt-0">
             <v-btn text @click="removeConfirm = false"> キャンセル </v-btn>
