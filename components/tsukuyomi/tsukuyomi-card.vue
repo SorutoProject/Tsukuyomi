@@ -83,7 +83,7 @@ module.exports = {
     const now = new Date().getTime();
     const target = new Date(this.date).getTime();
 
-    this.remainDayCount = Math.ceil((target - now) / (1000 * 60 * 60 * 24)) - 1;
+    this.remainDayCount = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
   },
 };
 </script>
