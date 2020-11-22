@@ -6,6 +6,7 @@
     <title>🌙 Tsukuyomi(beta version)</title>
     <link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="components/vuetify/vuetify.min.css">
+    <link rel="manifest" href="manifest.json">
 
     <script src="components/vue/vue.js"></script>
     <script src="components/vuetify/vuetify.js"></script>
@@ -97,6 +98,13 @@ const app = new Vue({
         }
     }
     
+});
+</script>
+<script>
+window.addEventListener("load", function(){
+    if('serviceWorker' in navigator){
+        navigator.serviceWorker.register("./sw.js");
+    }
 });
 </script>
 </html>

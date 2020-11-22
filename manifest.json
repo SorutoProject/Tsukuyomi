@@ -1,0 +1,16 @@
+{
+    "name": "Tsukuyomi",
+    "short_name": "Tsukuyomi",
+    "icons": [
+      {
+        "src": "tsukuyomi.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "description": "A How many days counter."
+  }
