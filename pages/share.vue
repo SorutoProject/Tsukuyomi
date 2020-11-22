@@ -73,6 +73,12 @@
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
     </div>
+    <div>
+        <p class="text--secondary">もしくは</p>
+        <v-btn text :href="gCalendarURL">
+            <v-icon>mdi-calendar</v-icon>　Googleカレンダーにこのイベントを追加
+        </v-btn>
+    </div>
   </div>
 </template>
 <script>
@@ -93,7 +99,26 @@ module.exports = {
         encodeURIComponent(this.$route.params.title) +
         "/share"),
       copied: false,
+      gCalendarURL:""
     };
+  },
+  mounted(){
+      //Create google calendar url
+
+      const zerofill = function(num){
+          return ('0'+num).slice(-2);
+      }
+      //get UTC
+      const date = new Date(this.$route.params.yyyymmdd);
+      const utc = date.getUTCFullYear() +
+    		zerofill(date.getUTCMonth()+1) +
+    		zerofill(date.getUTCDate()) +
+    		'T' +
+    		zerofill(date.getUTCHours()) +
+    		zerofill(date.getUTCMinutes()) +
+    		zerofill(date.getUTCSeconds()) +
+            'Z';
+        this.gCalendarURL = `https://www.google.com/calendar/event?action=TEMPLATE&text=${this.$route.params.title}&dates=${utc}/${utc}&trp=false`;
   },
   methods: {
     copyURL() {
