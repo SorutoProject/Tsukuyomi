@@ -60,7 +60,7 @@ module.exports = {
     });
 
     const self = this;
-    db.events.toArray((events) => {
+    db.events.orderBy("title").sortBy("date").then(events => {
       self.events = events;
       self.isPending = false;
     });
