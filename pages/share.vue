@@ -25,6 +25,17 @@
           URLをコピーしました
         </v-snackbar>
 
+        <!--copy-->
+        <v-btn icon x-large v-on:click="copyTag">
+          <v-icon v-if="!tagCopied">mdi-code-tags</v-icon>
+          <v-icon v-if="tagCopied">mdi-check</v-icon>
+        </v-btn>
+
+        <!--copied snackbar-->
+        <v-snackbar v-model="tagCopied" timeout="3000">
+          埋め込み用HTMLタグをコピーしました
+        </v-snackbar>
+
         <!--LINE-->
         <v-btn
           icon
@@ -107,6 +118,12 @@ module.exports = {
         "/" +
         encodeURIComponent(this.$route.params.title) +
         "/share",
+      embedURL:
+        new URL("./", location.href).href +
+        "#/embed/" +
+        this.$route.params.yyyymmdd +
+        "/" +
+        encodeURIComponent(this.$route.params.title),
       shareURLEncoded: encodeURIComponent(
         new URL("./", location.href).href +
           "#/add/" +
@@ -115,6 +132,7 @@ module.exports = {
           encodeURIComponent(this.$route.params.title) +
           "/share"
       ),
+
       LINEShareURL:
         "https://social-plugins.line.me/lineit/share?url=" +
         encodeURIComponent(
@@ -125,27 +143,28 @@ module.exports = {
             encodeURIComponent(this.$route.params.title) +
             "/share"
         ),
+
       copied: false,
+      tagCopied: false,
       gCalendarURL: "",
-      existEvent:true
+      existEvent: true,
     };
   },
-  created(){
+  created() {
     //Check the event is exist
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({
-      events:"title"
+      events: "title",
     });
 
     const self = this;
-    db.events.get(this.$route.params.title)
-    .then(event => {
-      if(event !== undefined){
+    db.events.get(this.$route.params.title).then((event) => {
+      if (event !== undefined) {
         self.existEvent = true;
-      }else{
+      } else {
         self.existEvent = false;
       }
-    })
+    });
   },
   mounted() {
     //Create google calendar url
@@ -184,6 +203,25 @@ module.exports = {
 
       //show copied message
       this.copied = true;
+    },
+
+    copyTag() {
+      //make a textbox
+      const copyForm = document.createElement("input");
+      //set URL
+      copyForm.value = `<iframe width="300" height="250" src="${this.embedURL}" frameborder="0"></iframe>`;
+      //append to <body>
+      document.body.appendChild(copyForm);
+
+      //select text in copyForm
+      copyForm.select();
+      //Exec copy
+      document.execCommand("copy");
+      //remove copyForm
+      copyForm.remove();
+
+      //show copied message
+      this.tagCopied = true;
     },
   },
   components: {

@@ -23,6 +23,9 @@
           <v-btn icon v-if="sharable" :to="'/share/' + date + '/' + title">
             <v-icon>mdi-share-variant</v-icon>
           </v-btn>
+          <v-btn icon v-if="addable" :href="addURL" target="_blank">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
         </v-card-actions>
       </div>
       <div v-if="removed">
@@ -55,13 +58,20 @@
 </template>
 <script>
 module.exports = {
-  props: ["title", "date", "removable", "sharable", "elevation"],
+  props: ["title", "date", "removable", "sharable", "elevation","addable"],
   data() {
     return {
       remainDayCount: 0,
       removeConfirm: false,
       removed: false,
       removeCompleted: false,
+
+      addURL:new URL("./", location.href).href +
+        "#/add/" +
+        this.date +
+        "/" +
+        encodeURIComponent(this.title) +
+        "/share"
     };
   },
   methods: {
