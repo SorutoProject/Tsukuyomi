@@ -28,7 +28,7 @@
         icon
         x-large
         color="#00b904"
-        :href="'https://social-plugins.line.me/lineit/share?url=' + shareURLEncoded"
+        :href="'https://social-plugins.line.me/lineit/share?url=' + shareURLEncoded + '&openExternalBrowser=1'"
         target="_blank"
       >
         <svg
