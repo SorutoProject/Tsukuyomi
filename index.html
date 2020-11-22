@@ -72,8 +72,10 @@ const routes = [
     {path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue")},
     //new event maker
     {path: "/new", component:httpVueLoader("./pages/new.vue")},
+    //alert to change browser
+    {path: "/alert", component:httpVueLoader("./pages/alert.vue")},
     //error page
-    {path: "*", component:httpVueLoader("./pages/invalid.vue")}
+    {path: "*", component:httpVueLoader("./pages/invalid.vue")},
 ]
 
 const router = new VueRouter({
@@ -86,6 +88,14 @@ const app = new Vue({
     data:{
         "drawer":false
     },
+    mounted:function(){
+        //go to alert page when accessed by "in app browser."
+        const ua = navigator.userAgent.toLowerCase();
+        const isOpenedInApp = /fb|line/.test(ua);
+        if(isOpenedInApp === true){
+            router.replace("/alert")
+        }
+    }
     
 });
 </script>
