@@ -18,6 +18,7 @@
                 </v-col>
             </v-row>
         </v-container>
+        <p v-if="events.length === 0" class="text-center text--scondary">イベントは登録されていません</p>
     </div>
 </template>
 <script>
