@@ -18,6 +18,20 @@ Respecting this idea, I named this app "Tsukuyomi".
 
 > Learn more: https://en.wikipedia.org/wiki/Tsukuyomi-no-Mikoto
 
+
+## List of Open Source Softwares used in Tsukuyomi
+* Vue
+* Vue Router
+* HttpVueLoader
+* Vuetify
+* Vue-i18n
+* MateralDesignIcons
+* DexieJS
+
+## Icons Copyright
+* The "LINE" logo used in the Share page
+    * Downloaded from https://fontawesome.com/icons/line?style=brands
+    * LICENSE: https://fontawesome.com/license
 ## Copyright and License
 (C) 2020 Soruto Project.  
 MIT Licensed.
