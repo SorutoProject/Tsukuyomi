@@ -3,10 +3,10 @@
     <p>
       <v-btn to="/new" text>
         <v-icon>mdi-plus</v-icon>
-        　新しいイベントを作成
+        　{{$t("index.newEvent")}}
       </v-btn>
     </p>
-    <span class="text-h6">イベントリスト</span>
+    <span class="text-h6">{{$t("index.eventListText")}}</span>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -35,7 +35,7 @@
       v-if="events.length === 0 && !isPending"
       class="text-center text--scondary"
     >
-      イベントは登録されていません
+      {{$t("index.noEventsFoundText")}}
     </p>
   </div>
 </template>

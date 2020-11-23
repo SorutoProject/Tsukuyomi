@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p class="text-h5">無効なURL</p>
-        <p>無効なURLパラメータが指定されています。</p>
-        <p><v-btn to="/"><v-icon>mdi-home</v-icon>ホーム</v-btn>
+        <p class="text-h5">Invalid URL</p>
+        <p>You entered invalid URL.</p>
+        <p><v-btn to="/"><v-icon>mdi-home</v-icon>HOME</v-btn>
     </div>
 </template>

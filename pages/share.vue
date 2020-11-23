@@ -4,15 +4,15 @@
       <p class="text-h5">
         <v-btn icon elevation="0" to="/" text>
           <v-icon>mdi-arrow-left</v-icon> </v-btn
-        >　イベントの共有
+        >　{{$t("share.title")}}
       </p>
-      <span class="text--secondary">このイベントを共有します</span>
+      <span class="text--secondary">{{$t("share.subtext")}}</span>
       <tsukuyomi-card
         :title="this.$route.params.title"
         :date="this.$route.params.yyyymmdd"
         elevation="0"
       ></tsukuyomi-card>
-      <p>共有方法</p>
+      <p>{{$t("share.shareWithText")}}</p>
       <div>
         <!--copy-->
         <v-btn icon x-large v-on:click="copyURL">
@@ -22,7 +22,7 @@
 
         <!--copied snackbar-->
         <v-snackbar v-model="copied" timeout="3000">
-          URLをコピーしました
+          {{$t("share.urlCopied")}}
         </v-snackbar>
 
         <!--copy-->
@@ -33,7 +33,7 @@
 
         <!--copied snackbar-->
         <v-snackbar v-model="tagCopied" timeout="3000">
-          埋め込み用HTMLタグをコピーしました
+          {{$t("share.embedHtmlCopied")}}
         </v-snackbar>
 
         <!--LINE-->
@@ -91,9 +91,9 @@
         </v-btn>
       </div>
       <div>
-        <p class="text--secondary">もしくは</p>
+        <p class="text--secondary">{{$t("share.or")}}</p>
         <v-btn text :href="gCalendarURL" target="_blank">
-          <v-icon>mdi-calendar</v-icon>　Googleカレンダーに追加
+          <v-icon>mdi-calendar</v-icon>　{{$t("share.shareWithGCal")}}
         </v-btn>
       </div>
     </div>
@@ -101,9 +101,9 @@
       <p class="text-h5">
         <v-btn icon elevation="0" to="/" text>
           <v-icon>mdi-arrow-left</v-icon> </v-btn
-        >　エラー
+        >　{{$t("share.errorText")}}
       </p>
-      <p>イベントが見つかりません。</p>
+      <p>{{$t("share.errorSubtext")}}</p>
     </div>
   </div>
 </template>
@@ -209,7 +209,7 @@ module.exports = {
       //make a textbox
       const copyForm = document.createElement("input");
       //set URL
-      copyForm.value = `<iframe width="300" height="250" src="${this.embedURL}" frameborder="0"></iframe>`;
+      copyForm.value = `<iframe width="300" height="280" src="${this.embedURL}" frameborder="0"></iframe>`;
       //append to <body>
       document.body.appendChild(copyForm);
 

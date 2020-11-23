@@ -3,30 +3,30 @@
         <div class="text-h5">
             <p><v-btn icon elevation="0" to="/" text>
                 <v-icon>mdi-arrow-left</v-icon>
-            </v-btn>　
-            新しいイベントを作成</p>
+            </v-btn> 
+            {{$t("new.newEventText")}}</p>
         </div>
             <p>
                 <v-text-field
                     v-model="newEvent.title"
-                    label="イベントの名称"
-                    placeholder="例：文化祭"
+                    :label="$t('new.titleTextBox.label')"
+                    :placeholder="$t('new.titleTextBox.placeholder')"
                     counter="50"
                     maxlength="50"
                     clearable    
                 ></v-text-field>
             </p>
             <p>
-                <span class="text-caption">イベント開始日</span><br>     
+                <span class="text-caption">{{$t("new.startDateText")}}</span><br>     
                 <v-date-picker
                 v-model="newEvent.date"
-                locale="ja-jp"
+                :locale="userLang"
                 :day-format="date => new Date(date).getDate()"
                 :min="today"
                 ></v-date-picker>
             </p>
             <p>
-                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" class="teal white--text"><v-icon>mdi-plus</v-icon> イベントを作成</v-btn>
+                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" class="teal white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
             </p>
         
     </div>
@@ -39,7 +39,8 @@ module.exports = {
                 "title":"",
                 "date":""
             },
-            "today":""
+            "today":"",
+            "userLang":navigator.language
         }
     },
     mounted(){
