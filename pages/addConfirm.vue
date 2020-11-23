@@ -17,7 +17,7 @@
             </p>
         </div>
         <div v-if="isShare">
-            <p class="text-h5">{{$t("addCOnfirm.share.title")}}</p>
+            <p class="text-h5">{{$t("addConfirm.share.title")}}</p>
             <p>{{$t("addConfirm.share.confirmText")}}</p>
             <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
