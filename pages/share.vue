@@ -70,7 +70,7 @@
           :href="
             'https://twitter.com/share?url=' +
             shareURLEncoded +
-            '&hashtags=ツクヨミ'
+            '&hashtags=TSUKUYOMI'
           "
           target="_blank"
         >
