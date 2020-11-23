@@ -3,10 +3,11 @@
     <v-card :elevation="elevation">
       <div v-if="!removed">
         <v-card-text>
-          {{$t("card.dayleft.before")}}<span class="display-1 text-h4 text--primary">{{
+          {{ $t("card.dayleft.before")
+          }}<span class="display-1 text-h4 text--primary">{{
             remainDayCount
           }}</span
-          >{{$t("card.dayleft.after")}}
+          >{{ $t("card.dayleft.after") }}
 
           <v-card-title>{{ title }}</v-card-title>
           <v-card-subtitle>{{ date }}</v-card-subtitle>
@@ -24,12 +25,12 @@
             <v-icon>mdi-share-variant</v-icon>
           </v-btn>
           <v-btn text v-if="addable" :href="addURL" target="_blank">
-            <v-icon>mdi-plus</v-icon> {{$t("card.addText")}}
+            <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
         </v-card-actions>
       </div>
       <div v-if="removed">
-        <v-card-text>{{$t("card.removedText")}}</v-card-text>
+        <v-card-text>{{ $t("card.removedText") }}</v-card-text>
       </div>
 
       <!--Confirm Removing-->
@@ -40,15 +41,21 @@
           style="height: 100%"
         >
           <v-card-text class="pb-0">
-            <span class="text-h6 text--primary">{{$t("card.removeConfirm.title")}}</span>
+            <span class="text-h6 text--primary">{{
+              $t("card.removeConfirm.title")
+            }}</span>
             <v-card-title>{{ title }}</v-card-title>
             <v-card-subtitle>{{ date }}</v-card-subtitle>
-            <span class="text--primary">{{$t("card.removeConfirm.confirmText")}}</span>
+            <span class="text--primary">{{
+              $t("card.removeConfirm.confirmText")
+            }}</span>
           </v-card-text>
           <v-card-actions class="pt-0">
-            <v-btn text @click="removeConfirm = false"> {{$t("card.removeConfirm.buttons.cancel")}} </v-btn>
+            <v-btn text @click="removeConfirm = false">
+              {{ $t("card.removeConfirm.buttons.cancel") }}
+            </v-btn>
             <v-btn text v-on:click="remove" class="red white--text">
-              {{$t("card.removeConfirm.buttons.remove")}}
+              {{ $t("card.removeConfirm.buttons.remove") }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -58,7 +65,7 @@
 </template>
 <script>
 module.exports = {
-  props: ["title", "date", "removable", "sharable", "elevation","addable"],
+  props: ["title", "date", "removable", "sharable", "elevation", "addable"],
   data() {
     this.$i18n.locale = userLang;
     return {
@@ -67,12 +74,14 @@ module.exports = {
       removed: false,
       removeCompleted: false,
 
-      addURL:new URL("./", location.href).href +
+      addURL:
+        new URL("./", location.href).href +
         "#/add/" +
         this.date +
         "/" +
         encodeURIComponent(this.title) +
-        "/share"
+        "/share",
+      updateDayCountTimer:null
     };
   },
   methods: {
@@ -90,14 +99,26 @@ module.exports = {
     },
   },
   mounted() {
-    //Calclate how many days
-    const now = new Date();
-    now.setHours(0,0,0);
-    const target = new Date(this.date);
-    target.setHours(0,0,0);
+    const self = this;
+    const calclateDayCount = function () {
+      const now = new Date();
+      now.setHours(0, 0, 0);
+      const target = new Date(self.date);
+      target.setHours(0, 0, 0);
 
-    this.remainDayCount = Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+      self.remainDayCount = Math.ceil(
+        (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+      );
+    };
+    calclateDayCount();
+    //Calclate how many days every a second
+    this.updateDayCountTimer = setInterval(function(){
+      calclateDayCount();
+    }, 1000);
   },
+  destroyed(){
+    clearInterval(this.updateDayCountTimer);
+  }
 };
 </script>
 <style scoped>
