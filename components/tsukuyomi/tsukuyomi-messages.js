@@ -143,7 +143,7 @@ const messages = {
             subtext:"このイベントを共有します",
             shareWithText:"共有方法",
             urlCopied:"URLをコピーしました",
-            embedHtmlCopied:"埋め込み用",
+            embedHtmlCopied:"埋め込み用HTMLをコピーしました",
             or:"もしくは",
             shareWithGCal:"Googleカレンダーに追加",
             errorText:"エラー",
