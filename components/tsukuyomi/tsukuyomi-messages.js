@@ -2,11 +2,12 @@ const messages = {
     en: {
         app: {
             name: "TSUKUYOMI",
-            description: "How many days do I have?"
+            description: "How many days do I have?",
         },
         menu: {
             home: "HOME",
-            newEvent: "New"
+            newEvent: "New",
+            about:"about"
         },
         card: {
             dayleft: {
@@ -81,7 +82,8 @@ const messages = {
         },
         menu: {
             home: "ホーム",
-            newEvent: "新しいイベントを作成"
+            newEvent: "新しいイベントを作成",
+            about:"このアプリについて"
         },
         card: {
             dayleft: {
