@@ -95,7 +95,7 @@ const messages = {
                 confirmText: "削除しますか？",
                 buttons: {
                     cancel: "キャンセル",
-                    remove: "Save"
+                    remove: "削除"
                 }
             },
             removedText: "削除しました",
