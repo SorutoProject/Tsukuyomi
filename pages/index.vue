@@ -3,10 +3,10 @@
     <p>
       <v-btn to="/new" text>
         <v-icon>mdi-plus</v-icon>
-        　{{$t("index.newEvent")}}
+        　{{ $t("index.newEvent") }}
       </v-btn>
     </p>
-    <span class="text-h6">{{$t("index.eventListText")}}</span>
+    <span class="text-h6">{{ $t("index.eventListText") }}</span>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -35,7 +35,7 @@
       v-if="events.length === 0 && !isPending"
       class="text-center text--scondary"
     >
-      {{$t("index.noEventsFoundText")}}
+      {{ $t("index.noEventsFoundText") }}
     </p>
   </div>
 </template>
@@ -60,10 +60,31 @@ module.exports = {
     });
 
     const self = this;
-    db.events.orderBy("title").sortBy("date").then(events => {
-      self.events = events;
-      self.isPending = false;
-    });
-  }
+    db.events
+      .orderBy("title")
+      .sortBy("date")
+      .then((events) => {
+        //extract events only in the future
+        const eventsFiltered = events.filter((event) => {
+          const now = new Date();
+          now.setHours(0, 0, 0);
+          const target = new Date(event.date);
+          target.setHours(0, 0, 0);
+
+          const remainDayCount = Math.ceil(
+            (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+          );
+
+          if(remainDayCount >= 0){
+            return true;
+          }else{
+            return false;
+          }
+        });
+
+        self.events = eventsFiltered;
+        self.isPending = false;
+      });
+  },
 };
 </script>
