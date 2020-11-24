@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-h5">
-            <p><v-btn icon elevation="0" to="/" text>
+            <p><v-btn icon elevation="0" v-on:click="goBack">
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn> 
             {{$t("new.newEventText")}}</p>
@@ -50,6 +50,9 @@ module.exports = {
     methods:{
         submit(){
             router.push(`/add/${this.newEvent.date}/${this.newEvent.title}`);
+        },
+        goBack(){
+            router.go(-1);
         }
     }
 }

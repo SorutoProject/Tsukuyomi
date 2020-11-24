@@ -2,7 +2,7 @@
   <div>
     <div v-if="existEvent">
       <p class="text-h5">
-        <v-btn icon elevation="0" to="/" text>
+        <v-btn icon elevation="0" v-on:click="goBack">
           <v-icon>mdi-arrow-left</v-icon> </v-btn
         >　{{$t("share.title")}}
       </p>
@@ -223,6 +223,9 @@ module.exports = {
       //show copied message
       this.tagCopied = true;
     },
+    goBack(){
+      router.go(-1);
+    }
   },
   components: {
     "tsukuyomi-card": httpVueLoader(
