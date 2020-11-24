@@ -39,6 +39,7 @@
           v-if="removeConfirm"
           class="transition-fast-in-fast-out v-card--reveal"
           style="height: 100%"
+          elevation="0"
         >
           <v-card-text class="pb-0">
             <span class="text-h6 text--primary">{{
