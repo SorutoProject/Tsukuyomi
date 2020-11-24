@@ -65,10 +65,11 @@ module.exports = {
             const remainDayCount = Math.ceil(
               (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
             );
+            eventsFiltered[i].remainDayCount = remainDayCount;
           if (i === 0) {
             eventsFiltered[i].diff = remainDayCount;
           } else {
-            eventsFiltered[i].diff = remainDayCount - eventsFiltered[i - 1].diff;
+            eventsFiltered[i].diff = remainDayCount - eventsFiltered[i - 1].remainDayCount;
           }
         }
 
