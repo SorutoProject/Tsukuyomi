@@ -1,9 +1,12 @@
 <template>
   <div>
     <p>
-      <v-btn to="/new" text>
+      <v-btn to="/new" icon large>
         <v-icon>mdi-plus</v-icon>
-        　{{ $t("index.newEvent") }}
+        　<!--{{ $t("index.newEvent") }}-->
+      </v-btn>
+      <v-btn to="/timeline" icon large>
+        <v-icon>mdi-timeline</v-icon>
       </v-btn>
     </p>
     <span class="text-h6">{{ $t("index.eventListText") }}</span>

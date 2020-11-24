@@ -7,7 +7,8 @@ const messages = {
         menu: {
             home: "HOME",
             newEvent: "New",
-            about:"about"
+            timeline:"Timeline",
+            about:"About"
         },
         card: {
             dayleft: {
@@ -72,6 +73,11 @@ const messages = {
             shareWithGCal:"Add to Google Calendar",
             errorText:"Error",
             errorSubtext:"Requested event was not found."
+        },
+        timeline:{
+            title:"Timeline",
+            today:"Today",
+            days:" d."
         }
 
     },
@@ -83,6 +89,7 @@ const messages = {
         menu: {
             home: "ホーム",
             newEvent: "新しいイベントを作成",
+            timeline:"タイムライン",
             about:"このアプリについて"
         },
         card: {
@@ -148,6 +155,11 @@ const messages = {
             shareWithGCal:"Googleカレンダーに追加",
             errorText:"エラー",
             errorSubtext:"イベントが見つかりません"
+        },
+        timeline:{
+            title:"タイムライン",
+            today:"今日",
+            days:"日後"
         }
     }
 }

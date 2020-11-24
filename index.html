@@ -63,12 +63,19 @@
                                 </v-list-item-icon>
                                 <v-list-item-title>{{$t("menu.newEvent")}}</v-list-item-title>
                             </v-list-item>
+                            <v-list-item to="/timeline" @click="drawer = false">
+                                <v-list-item-icon>
+                                    <v-icon>mdi-timeline</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-title>{{$t("menu.timeline")}}</v-list-item-title>
+                            </v-list-item>
                             <v-list-item to="/about" @click="drawer = false">
                                 <v-list-item-icon>
                                     <v-icon>mdi-information</v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-title>{{$t("menu.about")}}</v-list-item-title>
                             </v-list-item>
+                            
                         </v-list-item-group>
                     </v-list>
                 </v-navigation-drawer>
@@ -100,6 +107,8 @@
         { path: "/embed/:yyyymmdd/:title/", component: httpVueLoader("./pages/embed.vue") },
         //about page
         {path:"/about", component:httpVueLoader("./pages/about.vue")},
+        //timeline page
+        {path:"/timeline", component:httpVueLoader("./pages/timeline.vue")},
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]
