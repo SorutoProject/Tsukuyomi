@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="text-h5">
-      <v-btn icon elevation="0" to="/" text>
+      <v-btn icon elevation="0" v-on:click="goBack">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       {{$t("timeline.title")}}
@@ -10,10 +10,8 @@
         <!--show "today" if index==0-->
         <v-timeline-item small v-if="index === 0" color="teal">{{$t("timeline.today")}}</v-timeline-item>
         <v-timeline-item hide-dot class="text--secondary">{{event.diff}}{{$t("timeline.days")}}</v-timeline-item>
-        <v-timeline-item small>{{event.title}}<br>
-        <span class="text-subtitle-2 text--secondary">
-            {{event.date}}
-        </span>
+        <v-timeline-item small>
+          <tsukuyomi-card :title="event.title" :date="event.date" elevation="0" sharable="true" removable="true"></tsukuyomi-card>
         </v-timeline-item>
     </v-timeline>
   </div>
@@ -24,6 +22,11 @@ module.exports = {
       return{
           events:[]
       }
+  },
+  methods:{
+    goBack(){
+      router.go(-1);
+    }
   },
   mounted() {
     //Get events from DB
@@ -77,6 +80,11 @@ module.exports = {
         self.events = eventsFiltered;
         self.isPending = false;
       });
+  },
+  components: {
+    "tsukuyomi-card": httpVueLoader(
+      "../components/tsukuyomi/tsukuyomi-card.vue"
+    ),
   },
 };
 </script>
