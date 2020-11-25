@@ -36,7 +36,7 @@
     </v-container>
     <p
       v-if="events.length === 0 && !isPending"
-      class="text-center text--scondary"
+      class="text-center text--secondary"
     >
       {{ $t("index.noEventsFoundText") }}
     </p>
