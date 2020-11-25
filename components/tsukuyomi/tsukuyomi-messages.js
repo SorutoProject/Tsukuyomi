@@ -77,7 +77,8 @@ const messages = {
         timeline:{
             title:"Timeline",
             today:"Today",
-            days:" d."
+            days:" d.",
+            noEventsFoundText: "No Events."
         }
 
     },
@@ -111,7 +112,7 @@ const messages = {
         index: {
             newEvent: "新しいイベントを作成",
             eventListText: "イベントリスト",
-            noEventsFoundText: "イベントは登録されていません"
+            noEventsFoundText: "登録されているイベントはありません"
         },
         embed: {
             notInFrameText: "このページはiframe内でのみ有効です。"
@@ -159,7 +160,8 @@ const messages = {
         timeline:{
             title:"タイムライン",
             today:"今日",
-            days:"日後"
+            days:"日後",
+            noEventsFoundText: "登録されているイベントはありません"
         }
     }
 }
