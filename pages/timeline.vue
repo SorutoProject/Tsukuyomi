@@ -6,7 +6,11 @@
       </v-btn>
       {{$t("timeline.title")}}
     </p>
-    <v-timeline dense v-for="(event,index) in events" :key="event.title">
+    <!--loader-->
+    <p class="text-center" v-if="isPending">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </p>
+    <v-timeline dense v-for="(event,index) in events" :key="event.title" v-if="events.lenght > 0 && !isPending">
         <!--show "today" if index==0-->
         <v-timeline-item small v-if="index === 0" color="teal">{{$t("timeline.today")}}</v-timeline-item>
         <v-timeline-item hide-dot class="text--secondary">{{event.diff}}{{$t("timeline.days")}}</v-timeline-item>
@@ -14,13 +18,17 @@
           <tsukuyomi-card :title="event.title" :date="event.date" elevation="0" sharable="true" removable="true"></tsukuyomi-card>
         </v-timeline-item>
     </v-timeline>
+    <p v-if="events.length === 0 && !isPending" class="text-center text--secondary">
+      {{$t("timeline.noEventsFoundText")}}
+    </p>
   </div>
 </template>
 <script>
 module.exports = {
   data(){
       return{
-          events:[]
+          events:[],
+          isPending:true
       }
   },
   methods:{
