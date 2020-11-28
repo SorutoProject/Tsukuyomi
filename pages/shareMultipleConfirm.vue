@@ -28,7 +28,7 @@
       <v-btn to="/" text>
         {{$t("addConfirm.shareMultiple.buttons.cancel")}}
       </v-btn>
-      <v-btn @click="applyEvent" text class="teal white--text">
+      <v-btn @click="applyEvent" text class="teal white--text" :loading="loading">
         <v-icon>mdi-plus</v-icon> {{$t("addConfirm.shareMultiple.buttons.submit")}}
       </v-btn>
     </p>
@@ -39,7 +39,8 @@
 module.exports = {
   data() {
     return {
-      newEvents: []
+      newEvents: [],
+      loading:false
     }
   },
   mounted(){
@@ -59,6 +60,8 @@ module.exports = {
   },
   methods: {
     applyEvent() {
+      //Show Loading Animation Circle
+      this.loading = true;
       //Save to IndexedDB
       const db = new Dexie("Tsukuyomi_events");
       db.version(1).stores({
