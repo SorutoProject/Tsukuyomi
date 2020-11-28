@@ -136,11 +136,15 @@ module.exports = {
   width: 100%;
 }
 
+.tsukuyomi-card.theme--dark.elevation-0{
+  background:rgba(0,0,0,0) !important;
+}
+
 .tsukuyomi-card.highlight{
-  background:#B3E5FC;
+  background:#B3E5FC !important;
 }
 
 .tsukuyomi-card.theme--dark.highlight{
-  background:#01579B;
+  background:#01579B !important;
 }
 </style>
