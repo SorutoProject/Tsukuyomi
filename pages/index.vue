@@ -81,16 +81,40 @@ module.exports = {
             (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
           );
 
-          if(remainDayCount >= 0){
+          if (remainDayCount >= 0) {
             return true;
-          }else{
+          } else {
             return false;
           }
         });
 
         self.events = eventsFiltered;
         self.isPending = false;
+
+        //if "highlight" query is defined, highlight the card after generating event list
+        if (this.$route.query.highlight) {
+          const self = this;
+          this.$nextTick(function () {
+            setTimeout(function () {
+              self.highlightCard(self.$route.query.highlight);
+            }, 500);
+          });
+        }
       });
+  },
+  methods: {
+    highlightCard(title) {
+      //get card element that has the "title" given as argument
+      const targetCard = document.querySelector(
+        `.tsukuyomi-card[data-title="${title}"]`
+      );
+      if (targetCard !== null) {
+        //highlight the card
+        targetCard.classList.add("highlight");
+        //scroll to the card
+        targetCard.scrollIntoView();
+      }
+    },
   },
 };
 </script>

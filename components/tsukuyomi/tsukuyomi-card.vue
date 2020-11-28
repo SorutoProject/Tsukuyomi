@@ -128,11 +128,19 @@ module.exports = {
   }
 };
 </script>
-<style scoped>
-.v-card--reveal {
+<style>
+.tsukuyomi-card .v-card--reveal {
   bottom: 0;
   opacity: 1 !important;
   position: absolute;
   width: 100%;
+}
+
+.tsukuyomi-card.highlight{
+  background:#B3E5FC;
+}
+
+.tsukuyomi-card.theme--dark.highlight{
+  background:#01579B;
 }
 </style>

@@ -30,6 +30,23 @@ module.exports = {
       }
     }
   },
+  mounted(){
+    //check whether shared events has already registered.
+    const db = new Dexie("Tsukuyomi_events");
+    db.version(1).stores({
+      events: "title"
+    });
+
+    const self = this;
+    db.events.get(this.newEvent.title).then(function(event){
+      if(event !== undefined){
+        if(event.date === self.$route.params.yyyymmdd){
+          //if registered, move to TOP and highlight the event
+          router.replace(`/?highlight=${self.$route.params.title}`)
+        }    
+      }
+    });
+  },
   methods: {
     applyEvent() {
       //Save to IndexedDB
