@@ -158,12 +158,34 @@
         data: {
             "drawer": false
         },
+        created:function(){
+            //set darkmode setting
+            const darkmode = localStorage.getItem("tsukuyomi-theme-dark");
+            if(darkmode !== null){
+                if(darkmode === "true"){
+                    this.$vuetify.theme.dark = true;
+                }else{
+                    this.$vuetify.theme.dark = false;
+                }
+            }
+            else if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                this.$vuetify.theme.dark = true;
+            }else{
+                this.$vuetify.theme.dark = false;
+            }
+        },
         mounted: function () {
             //go to alert page when accessed by "in app browser."
             const ua = navigator.userAgent.toLowerCase();
             const isOpenedInApp = /fb|line/.test(ua);
             if (isOpenedInApp === true) {
                 router.replace("/alert")
+            }
+        },
+        watch:{
+            //watch $vuetify.theme.dark to save darkmode setting
+            '$vuetify.theme.dark': function(setting){
+                localStorage.setItem("tsukuyomi-theme-dark", setting);
             }
         }
 
