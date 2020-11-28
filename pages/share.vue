@@ -40,7 +40,6 @@
         <v-btn
           icon
           x-large
-          color="#00b904"
           :href="LINEShareURL"
           target="_blank"
         >
@@ -66,7 +65,6 @@
         <v-btn
           icon
           x-large
-          color="#55ACEE"
           :href="
             'https://twitter.com/share?url=' +
             shareURLEncoded +
@@ -81,7 +79,6 @@
         <v-btn
           icon
           x-large
-          color="#3B5998"
           :href="
             'https://www.facebook.com/sharer/sharer.php?u=' + shareURLEncoded
           "
