@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!isShare">
+        <div>
             <p class="text-h5">{{$t("addConfirm.add.title")}}</p>
             <p>{{$t("addConfirm.add.confirmText")}}</p>
             <!--<p>タイトル：{{newEvent.title}}</p>
@@ -16,22 +16,6 @@
                 </v-btn>
             </p>
         </div>
-        <div v-if="isShare">
-            <p class="text-h5">{{$t("addConfirm.share.title")}}</p>
-            <p>{{$t("addConfirm.share.confirmText")}}</p>
-            <!--<p>タイトル：{{newEvent.title}}</p>
-            <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
-            <tsukuyomi-card :title="newEvent.title" :date="this.$route.params.yyyymmdd" elevation="0"></tsukuyomi-card>
-            <p class="text--secondary text-caption" v-html="$t('addConfirm.share.cautionText')"></p>
-            <p>
-                <v-btn to="/" text>
-                    {{$t("addConfirm.share.buttons.cancel")}}
-                </v-btn>
-                <v-btn @click="applyEvent" text class="teal white--text">
-                  <v-icon>mdi-plus</v-icon> {{$t("addConfirm.share.buttons.submit")}}
-                </v-btn>
-            </p>
-        </div>
     </div>
 </template>
 <script>
@@ -43,8 +27,7 @@ module.exports = {
                 month:this.$route.params.yyyymmdd.split("-")[1],
                 date:this.$route.params.yyyymmdd.split("-")[2],
                 title: this.$route.params.title
-            },
-            isShare: this.$route.params.share !== undefined
+            }
         }
     },
     methods: {

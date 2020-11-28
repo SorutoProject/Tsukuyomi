@@ -1,6 +1,6 @@
 <template>
   <div v-if="!removeCompleted">
-    <v-card :elevation="elevation">
+    <v-card :elevation="elevation" :data-checked="checked" :data-date="date" :data-title="title" class="tsukuyomi-card">
       <div v-if="!removed">
         <v-card-text>
           {{ $t("card.dayleft.before")
@@ -26,6 +26,11 @@
           </v-btn>
           <v-btn text v-if="addable" :href="addURL" target="_blank">
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
+          </v-btn>
+          <v-btn text v-if="checkable" v-on:click="checked = !checked">
+            <v-icon v-if="checked" color="blue darken-1">mdi-checkbox-marked</v-icon>
+            <v-icon v-if="!checked">mdi-checkbox-blank-outline</v-icon>
+            　{{$t("card.checkText")}}
           </v-btn>
         </v-card-actions>
       </div>
@@ -66,7 +71,7 @@
 </template>
 <script>
 module.exports = {
-  props: ["title", "date", "removable", "sharable", "elevation", "addable"],
+  props: ["title", "date", "removable", "sharable", "elevation", "addable","checkable"],
   data() {
     this.$i18n.locale = userLang;
     return {
@@ -74,6 +79,7 @@ module.exports = {
       removeConfirm: false,
       removed: false,
       removeCompleted: false,
+      checked:false,
 
       addURL:
         new URL("./", location.href).href +

@@ -1,18 +1,13 @@
 <template>
   <div>
+    <p class="text-h5"><v-btn icon elevation="0" v-on:click="goBack">
+      <v-icon>mdi-arrow-left</v-icon></v-btn> {{$t("shareMultiple.title")}}</p>
     <p>
-      <v-btn to="/new" icon large>
-        <v-icon>mdi-plus</v-icon>
-        　<!--{{ $t("index.newEvent") }}-->
-      </v-btn>
-      <v-btn to="/timeline" icon large>
-        <v-icon>mdi-timeline</v-icon>
-      </v-btn>
-      <v-btn to="/share-multiple" icon large>
+      <v-btn text v-on:click="share">
         <v-icon>mdi-share-all</v-icon>
+        　{{$t("shareMultiple.buttons.share")}}
       </v-btn>
     </p>
-    <span class="text-h6">{{ $t("index.eventListText") }}</span>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -31,8 +26,7 @@
           <tsukuyomi-card
             :title="event.title"
             :date="event.date"
-            removable="true"
-            sharable="true"
+            checkable="true"
           ></tsukuyomi-card>
         </v-col>
       </v-row>
@@ -41,8 +35,17 @@
       v-if="events.length === 0 && !isPending"
       class="text-center text--secondary"
     >
-      {{ $t("index.noEventsFoundText") }}
+      {{ $t("shareMultiple.noEventsFoundText") }}
     </p>
+    <!--no selected snackbar-->
+    <v-snackbar v-model="noSelected" timeout="3000">
+      {{$t("shareMultiple.noSelected")}}
+    </v-snackbar>
+    <!--copied snackbar-->
+    <v-snackbar v-model="copied" timeout="3000">
+      {{$t("shareMultiple.urlCopied")}}
+    </v-snackbar>
+
   </div>
 </template>
 <script>
@@ -56,6 +59,8 @@ module.exports = {
     return {
       events: [],
       isPending: true,
+      copied:false,
+      noSelected:false
     };
   },
   mounted() {
@@ -92,5 +97,41 @@ module.exports = {
         self.isPending = false;
       });
   },
+  methods:{
+    goBack(){
+      router.go(-1);
+    },
+    share(){
+      //extract events from checked cards
+      const checkedElems = document.querySelectorAll(`.tsukuyomi-card[data-checked="true"]`);
+      if(checkedElems.length === 0){
+        this.noSelected = true; //show no selected message
+        return;
+      }
+      let events = [];
+      checkedElems.forEach(function(elem){
+        events.push(elem.dataset.date);
+        events.push(elem.dataset.title);
+      });
+
+      //copy multiple sharing url to clipboard
+      //make a textbox
+      const copyForm = document.createElement("input");
+      //set URL
+      copyForm.value = new URL("./", location.href).href + "#/sm/" + encodeURIComponent(events.join("||"));
+      //append to <body>
+      document.body.appendChild(copyForm);
+
+      //select text in copyForm
+      copyForm.select();
+      //Exec copy
+      document.execCommand("copy");
+      //remove copyForm
+      copyForm.remove();
+
+      //show copied message
+      this.copied = true;
+    }
+  }
 };
 </script>

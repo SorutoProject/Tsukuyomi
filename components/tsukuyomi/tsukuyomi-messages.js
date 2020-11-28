@@ -8,7 +8,8 @@ const messages = {
             home: "HOME",
             newEvent: "New",
             timeline:"Timeline",
-            about:"About"
+            about:"About",
+            shareMultiple:"Share Multiple"
         },
         card: {
             dayleft: {
@@ -24,7 +25,8 @@ const messages = {
                 }
             },
             removedText: "Removed.",
-            addText: "Add to TSUKUYOMI"
+            addText: "Add to TSUKUYOMI",
+            checkText:"Select"
         },
         index: {
             newEvent: "New",
@@ -61,18 +63,36 @@ const messages = {
                     cancel:"cancel",
                     submit:"save"
                 }
+            },
+            shareMultiple:{
+                title:"Share Events",
+                confirmText:"Add these events to your events list.",
+                cautionText:"These events were created by others.<br>Save them on your own responsibility.",
+                buttons:{
+                    cancel:"cancel",
+                    submit:"save"
+                }
             }
         },
         share:{
             title:"Share",
             subtext:"Share this event now",
             shareWithText:"Share with",
-            urlCopied:"Copied URL to share",
+            urlCopied:"Copied Sharing URL",
             embedHtmlCopied:"Copied HTML to embed this event",
             or:"OR",
             shareWithGCal:"Add to Google Calendar",
             errorText:"Error",
             errorSubtext:"Requested event was not found."
+        },
+        shareMultiple:{
+          title:"Share Multiple",
+          noEventsFoundText:"No Events.",
+          urlCopied:"Copied Sharing URL",
+          noSelected:"Select at least one event.",
+          buttons:{
+            share:"Share Selected Events"
+          }
         },
         timeline:{
             title:"Timeline",
@@ -91,7 +111,8 @@ const messages = {
             home: "ホーム",
             newEvent: "新しいイベントを作成",
             timeline:"タイムライン",
-            about:"このアプリについて"
+            about:"このアプリについて",
+            shareMultiple:"まとめて共有"
         },
         card: {
             dayleft: {
@@ -107,7 +128,8 @@ const messages = {
                 }
             },
             removedText: "削除しました",
-            addText: "TSUKUYOMIに追加"
+            addText: "TSUKUYOMIに追加",
+            checkText:"選択"
         },
         index: {
             newEvent: "新しいイベントを作成",
@@ -144,6 +166,15 @@ const messages = {
                     cancel:"キャンセル",
                     submit:"追加"
                 }
+            },
+            shareMultiple:{
+              title:"まとめて共有",
+              confirmText:"次の共有されたイベントをイベントリストに追加しますか？",
+              cautionText:"これらのイベントは、他のユーザーが作成したものです。<br>イベントを追加することによる損害などについて、開発者は一切の責任を負いません。",
+              buttons:{
+                  cancel:"キャンセル",
+                  submit:"追加"
+              }
             }
         },
         share:{
@@ -156,6 +187,15 @@ const messages = {
             shareWithGCal:"Googleカレンダーに追加",
             errorText:"エラー",
             errorSubtext:"イベントが見つかりません"
+        },
+        shareMultiple:{
+          title:"まとめて共有",
+          noEventsFoundText:"登録されているイベントはありません",
+          urlCopied:"URLをコピーしました",
+          noSelected:"少なくとも1つ以上のイベントを選択してください",
+          buttons:{
+            share:"選択したイベントを共有"
+          }
         },
         timeline:{
             title:"タイムライン",

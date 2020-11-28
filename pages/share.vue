@@ -113,11 +113,10 @@ module.exports = {
     return {
       shareURL:
         new URL("./", location.href).href +
-        "#/add/" +
+        "#/s/" +
         this.$route.params.yyyymmdd +
         "/" +
-        encodeURIComponent(this.$route.params.title) +
-        "/share",
+        encodeURIComponent(this.$route.params.title),
       embedURL:
         new URL("./", location.href).href +
         "#/embed/" +
@@ -126,22 +125,20 @@ module.exports = {
         encodeURIComponent(this.$route.params.title),
       shareURLEncoded: encodeURIComponent(
         new URL("./", location.href).href +
-          "#/add/" +
+          "#/s/" +
           this.$route.params.yyyymmdd +
           "/" +
-          encodeURIComponent(this.$route.params.title) +
-          "/share"
+          encodeURIComponent(this.$route.params.title)
       ),
 
       LINEShareURL:
         "https://social-plugins.line.me/lineit/share?url=" +
         encodeURIComponent(
           new URL("./", location.href).href +
-            "?openExternalBrowser=1#/add/" +
+            "?openExternalBrowser=1#/s/" +
             this.$route.params.yyyymmdd +
             "/" +
-            encodeURIComponent(this.$route.params.title) +
-            "/share"
+            encodeURIComponent(this.$route.params.title)
         ),
 
       copied: false,
