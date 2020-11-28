@@ -63,6 +63,12 @@
                                 </v-list-item-icon>
                                 <v-list-item-title>{{$t("menu.timeline")}}</v-list-item-title>
                             </v-list-item>
+                            <v-list-item to="/past" @click="drawer = false">
+                                <v-list-item-icon>
+                                    <v-icon>mdi-clock-time-eight</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-title>{{$t("menu.past")}}</v-list-item-title>
+                            </v-list-item>
                             <v-divider></v-divider>
                             <v-list-item to="/new" @click="drawer = false">
                                 <v-list-item-icon>
@@ -136,6 +142,8 @@
         {path:"/about", component:httpVueLoader("./pages/about.vue")},
         //timeline page
         {path:"/timeline", component:httpVueLoader("./pages/timeline.vue")},
+        //passed events page
+        {path:"/past", component:httpVueLoader("./pages/past.vue")},
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]

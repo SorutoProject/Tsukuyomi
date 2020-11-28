@@ -9,12 +9,13 @@ const messages = {
             newEvent: "New",
             timeline:"Timeline",
             about:"About",
-            shareMultiple:"Share Multiple"
+            shareMultiple:"Share Multiple",
+            past:"Past Events"
         },
         card: {
             dayleft: {
                 before: "",
-                after: "d. left"
+                after: " d. left"
             },
             removeConfirm: {
                 title: "Confirm",
@@ -26,7 +27,9 @@ const messages = {
             },
             removedText: "Removed.",
             addText: "Add to TSUKUYOMI",
-            checkText:"Select"
+            checkText:"Select",
+            today:"Today",
+            passed:"Passed"
         },
         index: {
             newEvent: "New",
@@ -99,6 +102,10 @@ const messages = {
             today:"Today",
             days:" d.",
             noEventsFoundText: "No Events."
+        },
+        past:{
+            title:"Past Events",
+            noEventsFoundText:"No Past Events."
         }
 
     },
@@ -112,7 +119,8 @@ const messages = {
             newEvent: "新しいイベントを作成",
             timeline:"タイムライン",
             about:"このアプリについて",
-            shareMultiple:"まとめて共有"
+            shareMultiple:"まとめて共有",
+            past:"過去のイベント"
         },
         card: {
             dayleft: {
@@ -129,7 +137,9 @@ const messages = {
             },
             removedText: "削除しました",
             addText: "TSUKUYOMIに追加",
-            checkText:"選択"
+            checkText:"選択",
+            today:"今日",
+            passed:"過去のイベント"
         },
         index: {
             newEvent: "新しいイベントを作成",
@@ -202,6 +212,10 @@ const messages = {
             today:"今日",
             days:"日後",
             noEventsFoundText: "登録されているイベントはありません"
+        },
+        past:{
+            title:"過去のイベント",
+            noEventsFoundText:"過去のイベントはありません"
         }
     }
 }
