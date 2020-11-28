@@ -3,11 +3,17 @@
     <v-card :elevation="elevation" :data-checked="checked" :data-date="date" :data-title="title" class="tsukuyomi-card">
       <div v-if="!removed">
         <v-card-text>
-          {{ $t("card.dayleft.before")
-          }}<span class="display-1 text-h4 text--primary">{{
+          <span v-if="remainDayCount > 0">{{$t("card.dayleft.before")
+          }}<span class="display-1 text-h5 font-weight-bold text--primary">{{
             remainDayCount
           }}</span
-          >{{ $t("card.dayleft.after") }}
+          >{{ $t("card.dayleft.after") }}</span>
+          <span v-if="remainDayCount === 0" class="display-1 text-h5 font-weight-bold text--primary">
+            {{$t("card.today")}}
+          </span>
+          <span v-if="remainDayCount < 0" class="display-1 text-h5 text--secondary">
+            {{$t("card.passed")}}
+          </span>
 
           <v-card-title>{{ title }}</v-card-title>
           <v-card-subtitle>{{ date }}</v-card-subtitle>
