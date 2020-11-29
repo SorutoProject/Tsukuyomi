@@ -49,10 +49,10 @@ module.exports = {
     },
     methods:{
         submit(){
-            router.push(`/add/${this.newEvent.date}/${this.newEvent.title}`);
+            this.$router.push(`/add/${this.newEvent.date}/${this.newEvent.title}`);
         },
         goBack(){
-            router.go(-1);
+            this.$router.go(-1);
         }
     }
 }

@@ -4,7 +4,7 @@
         <span class="text-caption">Powered by <a :href="siteURL" target="_blank">TSUKUYOMI</a></span>
     </div>
     <div v-else>
-        <p>{{$t("embed.notInFrameText")}}
+        <p>{{$t("embed.notInFrameText")}}</p>
     </div>
 </template>
 <script>
@@ -20,7 +20,7 @@ module.exports = {
         document.querySelector("html").style.overflow = "auto";
     },
     components:{
-        "tsukuyomi-card":httpVueLoader("../components/tsukuyomi/tsukuyomi-card.vue")
+        "tsukuyomi-card":require("../components/tsukuyomi/tsukuyomi-card.vue").default
     }
 }
 </script>

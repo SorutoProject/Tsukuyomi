@@ -15,11 +15,25 @@
     <meta property="og:image" content=" tsukuyomi.png" />
 
     <title>TSUKUYOMI</title>
-    <link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
-    <link rel="stylesheet" href="components/vuetify/vuetify.min.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        div[v-cloak]+div {
+            display: block;
+        }
+
+        div:not([v-cloak])+div {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="dist/mdi/css/materialdesignicons.css">
+    <!--<link rel="stylesheet" href="components/vuetify/vuetify.min.css">-->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="tsukuyomi.png">
 
+    <!--
     <script src="components/vue/vue.js"></script>
     <script src="components/vuetify/vuetify.js"></script>
     <script src="components/vue-router/vue-router.min.js"></script>
@@ -27,10 +41,13 @@
     <script src="components/tsukuyomi/tsukuyomi-messages.js"></script>
     <script src="components/vue-i18n/vue-i18n.js"></script>
     <script src="components/dexiejs/dexie.min.js"></script>
+    -->
+
+
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <v-app>
             <v-app-bar app>
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -112,93 +129,8 @@
         </v-app>
     </div>
 </body>
-<script>
-    const routes = [
-        //main page
-        { path: "/", component: httpVueLoader("./pages/index.vue") },
-        //detail page
-        /*{ path: "/detail/:yyyymmdd/:title", component: httpVueLoader("./pages/detail.vue") },*/
-        //confirm page
-        { path: "/add/:yyyymmdd/:title", component: httpVueLoader("./pages/addConfirm.vue") },
-        //share confirm page(lagacy)
-        { path: "/add/:yyyymmdd/:title/share", redirect: "/s/:yyyymmdd/:title" },
-        //sharing confirm page
-        { path: "/s/:yyyymmdd/:title/", component: httpVueLoader("./pages/shareConfirm.vue") },
-        //sharing multiple confirm page
-        { path: "/sm/:eventsSet", component: httpVueLoader("./pages/shareMultipleConfirm.vue") },
-        //sharing page
-        { path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue") },
-        //multiple sharing page
-        { path: "/share-multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
-        //sharing multiple page
-        { path: "/share/multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
-        //new event maker
-        { path: "/new", component: httpVueLoader("./pages/new.vue") },
-        //alert to change browser
-        { path: "/alert", component: httpVueLoader("./pages/alert.vue") },
-        //embed card
-        { path: "/embed/:yyyymmdd/:title/", component: httpVueLoader("./pages/embed.vue") },
-        //about page
-        { path: "/about", component: httpVueLoader("./pages/about.vue") },
-        //timeline page
-        { path: "/timeline", component: httpVueLoader("./pages/timeline.vue") },
-        //passed events page
-        { path: "/past", component: httpVueLoader("./pages/past.vue") },
-        //error page
-        { path: "*", component: httpVueLoader("./pages/invalid.vue") },
-    ]
-
-    const router = new VueRouter({
-        routes
-    });
-
-    const i18n = new VueI18n({
-        //userLang and messages are defined in "components/tsukuyomi/tsukuyomi-messages.js"
-        locale: userLang,
-        messages
-    });
-
-    const app = new Vue({
-        el: "#app",
-        router,
-        i18n,
-        vuetify: new Vuetify(),
-        data: {
-            "drawer": false
-        },
-        created: function () {
-            //set darkmode setting
-            const darkmode = localStorage.getItem("tsukuyomi-theme-dark");
-            if (darkmode !== null) {
-                if (darkmode === "true") {
-                    this.$vuetify.theme.dark = true;
-                } else {
-                    this.$vuetify.theme.dark = false;
-                }
-            }
-            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                this.$vuetify.theme.dark = true;
-            } else {
-                this.$vuetify.theme.dark = false;
-            }
-        },
-        mounted: function () {
-            //go to alert page when accessed by "in app browser."
-            const ua = navigator.userAgent.toLowerCase();
-            const isOpenedInApp = /fb|line/.test(ua);
-            if (isOpenedInApp === true) {
-                router.replace("/alert")
-            }
-        },
-        watch: {
-            //watch $vuetify.theme.dark to save darkmode setting
-            '$vuetify.theme.dark': function (setting) {
-                localStorage.setItem("tsukuyomi-theme-dark", setting);
-            }
-        }
-
-    });
-</script>
+<script src="dist/dexiejs/dexie.min.js"></script>
+<script src="dist/tsukuyomi.app.js"></script>
 <script>
     window.addEventListener("load", function () {
         if ('serviceWorker' in navigator) {

@@ -36,9 +36,9 @@
 <script>
 module.exports = {
   components: {
-    "tsukuyomi-card": httpVueLoader(
+    "tsukuyomi-card": require(
       "../components/tsukuyomi/tsukuyomi-card.vue"
-    ),
+    ).default,
   },
   data() {
     return {
@@ -82,7 +82,7 @@ module.exports = {
   },
   methods:{
     goBack(){
-      router.go(-1);
+      this.$router.go(-1);
     }
   }
 };
