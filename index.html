@@ -32,82 +32,82 @@
 <body>
     <div id="app">
         <v-app>
-            <v-card class="overflow-hidden">
-                <v-app-bar>
-                    <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-                    <v-toolbar-title>{{$t("app.name")}}</v-toolbar-title>
-                </v-app-bar>
-                <!--left menu-->
-                <v-navigation-drawer v-model="drawer" fixed temporary>
-                    <v-list nav dense>
-                        <v-list-item-group>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title style="font-size:12pt;font-weight: bold;">
-                                        {{$t("app.name")}}
-                                    </v-list-item-title>
-                                    <v-list-item-subtitle>
-                                        {{$t("app.description")}}
-                                    </v-list-item-subtitle>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item to="/" @click="drawer = false">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-home</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.home")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-list-item to="/timeline" @click="drawer = false">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-timeline</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.timeline")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-list-item to="/past" @click="drawer = false">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-clock-time-eight</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.past")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-divider></v-divider>
-                            <v-list-item to="/new" @click="drawer = false">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-plus</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.newEvent")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-list-item to="/share-multiple" @click="drawer = false">
-                                <v-list-item-icon>
-                                  <v-icon>mdi-share-all</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.shareMultiple")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-divider></v-divider>
-                            <v-list-item to="/about" @click="drawer = false">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-information</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>{{$t("menu.about")}}</v-list-item-title>
-                            </v-list-item>
-                            <v-divider></v-divider>
-                            <!--darkmode switcher-->
-                            <v-list-item v-on:click="$vuetify.theme.dark = !$vuetify.theme.dark">
-                                <v-list-item-icon>
-                                    <v-icon>mdi-brightness-6</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>
-                                    <span v-if="$vuetify.theme.dark">ON</span>
-                                    <span v-if="!$vuetify.theme.dark">OFF</span>
+            <v-app-bar app>
+                <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+                <v-toolbar-title>{{$t("app.name")}}</v-toolbar-title>
+            </v-app-bar>
+            <!--left menu-->
+            <v-navigation-drawer v-model="drawer" app temporary>
+                <v-list nav dense>
+                    <v-list-item-group>
+                        <v-list-item>
+                            <v-list-item-content>
+                                <v-list-item-title style="font-size:12pt;font-weight: bold;">
+                                    {{$t("app.name")}}
                                 </v-list-item-title>
-                            </v-list-item>
+                                <v-list-item-subtitle>
+                                    {{$t("app.description")}}
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item to="/" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.home")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item to="/timeline" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-timeline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.timeline")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item to="/past" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-clock-time-eight</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.past")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item to="/new" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-plus</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.newEvent")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item to="/share-multiple" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-share-all</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.shareMultiple")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item to="/about" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-information</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.about")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <!--darkmode switcher-->
+                        <v-list-item v-on:click="$vuetify.theme.dark = !$vuetify.theme.dark">
+                            <v-list-item-icon>
+                                <v-icon>mdi-brightness-6</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                                <span v-if="$vuetify.theme.dark">ON</span>
+                                <span v-if="!$vuetify.theme.dark">OFF</span>
+                            </v-list-item-title>
+                        </v-list-item>
 
-                        </v-list-item-group>
-                    </v-list>
-                </v-navigation-drawer>
-            </v-card>
-            <v-container>
-                <router-view :key="$route.fullPath"></router-view>
-            </v-container>
+                    </v-list-item-group>
+                </v-list>
+            </v-navigation-drawer>
+            <v-content>
+                <v-container>
+                    <router-view :key="$route.fullPath"></router-view>
+                </v-container>
+            </v-content>
 
         </v-app>
     </div>
@@ -121,17 +121,17 @@
         //confirm page
         { path: "/add/:yyyymmdd/:title", component: httpVueLoader("./pages/addConfirm.vue") },
         //share confirm page(lagacy)
-        { path: "/add/:yyyymmdd/:title/share", redirect:"/s/:yyyymmdd/:title"},
+        { path: "/add/:yyyymmdd/:title/share", redirect: "/s/:yyyymmdd/:title" },
         //sharing confirm page
         { path: "/s/:yyyymmdd/:title/", component: httpVueLoader("./pages/shareConfirm.vue") },
         //sharing multiple confirm page
-        { path:"/sm/:eventsSet", component: httpVueLoader("./pages/shareMultipleConfirm.vue")},
+        { path: "/sm/:eventsSet", component: httpVueLoader("./pages/shareMultipleConfirm.vue") },
         //sharing page
         { path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue") },
         //multiple sharing page
-        {path:"/share-multiple", component:httpVueLoader("./pages/shareMultiple.vue")},
+        { path: "/share-multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
         //sharing multiple page
-        {path: "/share/multiple", component:httpVueLoader("./pages/shareMultiple.vue")},
+        { path: "/share/multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
         //new event maker
         { path: "/new", component: httpVueLoader("./pages/new.vue") },
         //alert to change browser
@@ -139,11 +139,11 @@
         //embed card
         { path: "/embed/:yyyymmdd/:title/", component: httpVueLoader("./pages/embed.vue") },
         //about page
-        {path:"/about", component:httpVueLoader("./pages/about.vue")},
+        { path: "/about", component: httpVueLoader("./pages/about.vue") },
         //timeline page
-        {path:"/timeline", component:httpVueLoader("./pages/timeline.vue")},
+        { path: "/timeline", component: httpVueLoader("./pages/timeline.vue") },
         //passed events page
-        {path:"/past", component:httpVueLoader("./pages/past.vue")},
+        { path: "/past", component: httpVueLoader("./pages/past.vue") },
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]
@@ -166,19 +166,19 @@
         data: {
             "drawer": false
         },
-        created:function(){
+        created: function () {
             //set darkmode setting
             const darkmode = localStorage.getItem("tsukuyomi-theme-dark");
-            if(darkmode !== null){
-                if(darkmode === "true"){
+            if (darkmode !== null) {
+                if (darkmode === "true") {
                     this.$vuetify.theme.dark = true;
-                }else{
+                } else {
                     this.$vuetify.theme.dark = false;
                 }
             }
-            else if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 this.$vuetify.theme.dark = true;
-            }else{
+            } else {
                 this.$vuetify.theme.dark = false;
             }
         },
@@ -190,9 +190,9 @@
                 router.replace("/alert")
             }
         },
-        watch:{
+        watch: {
             //watch $vuetify.theme.dark to save darkmode setting
-            '$vuetify.theme.dark': function(setting){
+            '$vuetify.theme.dark': function (setting) {
                 localStorage.setItem("tsukuyomi-theme-dark", setting);
             }
         }
