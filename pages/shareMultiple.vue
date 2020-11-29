@@ -50,11 +50,6 @@
 </template>
 <script>
 module.exports = {
-  components: {
-    "tsukuyomi-card": httpVueLoader(
-      "../components/tsukuyomi/tsukuyomi-card.vue"
-    ),
-  },
   data() {
     return {
       events: [],

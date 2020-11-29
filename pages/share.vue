@@ -220,11 +220,6 @@ module.exports = {
     goBack(){
       router.go(-1);
     }
-  },
-  components: {
-    "tsukuyomi-card": httpVueLoader(
-      "../components/tsukuyomi/tsukuyomi-card.vue"
-    ),
-  },
+  }
 };
 </script>

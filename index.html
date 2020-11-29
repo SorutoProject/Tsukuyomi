@@ -158,6 +158,9 @@
         messages
     });
 
+    //register <tsukuyomi-card>
+    Vue.component("tsukuyomi-card", httpVueLoader("./components/tsukuyomi/tsukuyomi-card.vue"));
+
     const app = new Vue({
         el: "#app",
         router,
@@ -196,7 +199,6 @@
                 localStorage.setItem("tsukuyomi-theme-dark", setting);
             }
         }
-
     });
 </script>
 <script>

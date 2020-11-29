@@ -18,9 +18,6 @@ module.exports = {
     created(){
         document.querySelector(".v-app-bar").style.display = "none";
         document.querySelector("html").style.overflow = "auto";
-    },
-    components:{
-        "tsukuyomi-card":httpVueLoader("../components/tsukuyomi/tsukuyomi-card.vue")
     }
 }
 </script>

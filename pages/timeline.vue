@@ -104,11 +104,6 @@ module.exports = {
         self.events = eventsFiltered;
         self.isPending = false;
       });
-  },
-  components: {
-    "tsukuyomi-card": httpVueLoader(
-      "../components/tsukuyomi/tsukuyomi-card.vue"
-    ),
-  },
+  }
 };
 </script>

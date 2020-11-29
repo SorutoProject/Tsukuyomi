@@ -50,9 +50,6 @@ module.exports = {
                 throw e;
             });
         }
-    },
-    components:{
-        "tsukuyomi-card":httpVueLoader("../components/tsukuyomi/tsukuyomi-card.vue")
     }
 }
 </script>
