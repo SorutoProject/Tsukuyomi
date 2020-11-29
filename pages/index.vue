@@ -1,13 +1,18 @@
 <template>
   <div>
-    <p class="text-h5"><v-btn icon elevation="0" v-on:click="goBack">
-      <v-icon>mdi-arrow-left</v-icon></v-btn> {{$t("shareMultiple.title")}}</p>
     <p>
-      <v-btn text v-on:click="share">
+      <v-btn to="/new" icon large>
+        <v-icon>mdi-plus</v-icon>
+        　<!--{{ $t("index.newEvent") }}-->
+      </v-btn>
+      <v-btn to="/timeline" icon large>
+        <v-icon>mdi-timeline</v-icon>
+      </v-btn>
+      <v-btn to="/share-multiple" icon large>
         <v-icon>mdi-share-all</v-icon>
-        　{{$t("shareMultiple.buttons.share")}}
       </v-btn>
     </p>
+    <span class="text-h6">{{ $t("index.eventListText") }}</span>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -26,7 +31,8 @@
           <tsukuyomi-card
             :title="event.title"
             :date="event.date"
-            checkable="true"
+            removable="true"
+            sharable="true"
           ></tsukuyomi-card>
         </v-col>
       </v-row>
@@ -35,32 +41,21 @@
       v-if="events.length === 0 && !isPending"
       class="text-center text--secondary"
     >
-      {{ $t("shareMultiple.noEventsFoundText") }}
+      {{ $t("index.noEventsFoundText") }}
     </p>
-    <!--no selected snackbar-->
-    <v-snackbar v-model="noSelected" timeout="3000">
-      {{$t("shareMultiple.noSelected")}}
-    </v-snackbar>
-    <!--copied snackbar-->
-    <v-snackbar v-model="copied" timeout="3000">
-      {{$t("shareMultiple.urlCopied")}}
-    </v-snackbar>
-
   </div>
 </template>
 <script>
 module.exports = {
   components: {
-    "tsukuyomi-card": require(
+    "tsukuyomi-card": httpVueLoader(
       "../components/tsukuyomi/tsukuyomi-card.vue"
-    ).default,
+    ),
   },
   data() {
     return {
       events: [],
       isPending: true,
-      copied:false,
-      noSelected:false
     };
   },
   mounted() {
@@ -86,52 +81,40 @@ module.exports = {
             (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
           );
 
-          if(remainDayCount >= 0){
+          if (remainDayCount >= 0) {
             return true;
-          }else{
+          } else {
             return false;
           }
         });
 
         self.events = eventsFiltered;
         self.isPending = false;
+
+        //if "highlight" query is defined, highlight the card after generating event list
+        if (this.$route.query.highlight) {
+          const self = this;
+          this.$nextTick(function () {
+            setTimeout(function () {
+              self.highlightCard(self.$route.query.highlight);
+            }, 500);
+          });
+        }
       });
   },
-  methods:{
-    goBack(){
-      this.$router.go(-1);
-    },
-    share(){
-      //extract events from checked cards
-      const checkedElems = document.querySelectorAll(`.tsukuyomi-card[data-checked="true"]`);
-      if(checkedElems.length === 0){
-        this.noSelected = true; //show no selected message
-        return;
+  methods: {
+    highlightCard(title) {
+      //get card element that has the "title" given as argument
+      const targetCard = document.querySelector(
+        `.tsukuyomi-card[data-title="${title}"]`
+      );
+      if (targetCard !== null) {
+        //highlight the card
+        targetCard.classList.add("highlight");
+        //scroll to the card
+        targetCard.scrollIntoView();
       }
-      let events = [];
-      checkedElems.forEach(function(elem){
-        events.push(elem.dataset.date);
-        events.push(elem.dataset.title);
-      });
-
-      //copy multiple sharing url to clipboard
-      //make a textbox
-      const copyForm = document.createElement("input");
-      //set URL
-      copyForm.value = new URL("./", location.href).href + "#/sm/" + encodeURIComponent(events.join("||"));
-      //append to <body>
-      document.body.appendChild(copyForm);
-
-      //select text in copyForm
-      copyForm.select();
-      //Exec copy
-      document.execCommand("copy");
-      //remove copyForm
-      copyForm.remove();
-
-      //show copied message
-      this.copied = true;
-    }
-  }
+    },
+  },
 };
 </script>

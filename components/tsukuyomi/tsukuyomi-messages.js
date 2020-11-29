@@ -228,8 +228,3 @@ if (langSetting.indexOf("ja") > -1) {
 } else {
     userLang = "en";
 }
-
-module.exports = {
-    userLang,
-    messages
-}

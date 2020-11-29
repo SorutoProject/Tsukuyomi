@@ -30,7 +30,7 @@ module.exports = {
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      router.go(-1);
     },
   },
 };

@@ -79,6 +79,7 @@
 module.exports = {
   props: ["title", "date", "removable", "sharable", "elevation", "addable","checkable"],
   data() {
+    this.$i18n.locale = userLang;
     return {
       remainDayCount: 0,
       removeConfirm: false,

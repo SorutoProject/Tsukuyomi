@@ -218,13 +218,13 @@ module.exports = {
       this.tagCopied = true;
     },
     goBack(){
-      this.$router.go(-1);
+      router.go(-1);
     }
   },
   components: {
-    "tsukuyomi-card": require(
+    "tsukuyomi-card": httpVueLoader(
       "../components/tsukuyomi/tsukuyomi-card.vue"
-    ).default,
+    ),
   },
 };
 </script>

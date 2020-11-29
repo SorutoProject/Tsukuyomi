@@ -2,6 +2,6 @@
     <div>
         <p class="text-h5">Invalid URL</p>
         <p>You entered invalid URL.</p>
-        <p><v-btn to="/" replace><v-icon>mdi-home</v-icon>HOME</v-btn></p>
+        <p><v-btn to="/" replace><v-icon>mdi-home</v-icon>HOME</v-btn>
     </div>
 </template>

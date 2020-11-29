@@ -48,7 +48,7 @@ module.exports = {
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      router.go(-1);
     },
   },
   mounted() {
@@ -106,9 +106,9 @@ module.exports = {
       });
   },
   components: {
-    "tsukuyomi-card": require(
+    "tsukuyomi-card": httpVueLoader(
       "../components/tsukuyomi/tsukuyomi-card.vue"
-    ).default,
+    ),
   },
 };
 </script>

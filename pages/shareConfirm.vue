@@ -42,7 +42,7 @@ module.exports = {
       if(event !== undefined){
         if(event.date === self.$route.params.yyyymmdd){
           //if registered, move to TOP and highlight the event
-          this.$router.replace(`/?highlight=${self.$route.params.title}`)
+          router.replace(`/?highlight=${self.$route.params.title}`)
         }    
       }
     });
@@ -60,7 +60,7 @@ module.exports = {
           date: `${this.newEvent.year}-${this.newEvent.month}-${this.newEvent.date}`
         })
         .then(() => {
-          this.$router.replace("/");
+          router.replace("/");
         })
         .catch(e => {
           alert(e)
@@ -69,7 +69,7 @@ module.exports = {
     }
   },
   components: {
-    "tsukuyomi-card": require("../components/tsukuyomi/tsukuyomi-card.vue").default
+    "tsukuyomi-card": httpVueLoader("../components/tsukuyomi/tsukuyomi-card.vue")
   }
 }
 </script>

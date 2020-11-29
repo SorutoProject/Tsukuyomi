@@ -70,7 +70,7 @@ module.exports = {
 
       db.events.bulkPut(this.newEvents)
         .then(() => {
-          this.$router.replace("/");
+          router.replace("/");
         })
         .catch(e => {
           alert(e)
@@ -79,7 +79,7 @@ module.exports = {
     }
   },
   components: {
-    "tsukuyomi-card": require("../components/tsukuyomi/tsukuyomi-card.vue").default
+    "tsukuyomi-card": httpVueLoader("../components/tsukuyomi/tsukuyomi-card.vue")
   }
 }
 </script>
