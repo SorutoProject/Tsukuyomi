@@ -15,6 +15,11 @@
     <meta property="og:image" content=" tsukuyomi.png" />
 
     <title>TSUKUYOMI</title>
+    <style>
+    [v-cloak]{
+      display:none;
+    }
+    </style>
     <link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="components/vuetify/vuetify.min.css">
     <link rel="manifest" href="manifest.json">
@@ -30,7 +35,8 @@
 </head>
 
 <body>
-    <div id="app">
+
+    <div id="app" v-cloak>
         <v-app>
             <v-app-bar app>
                 <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
