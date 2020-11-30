@@ -62,6 +62,8 @@ const messages = {
                 title:"Share",
                 confirmText:"Add this event to your events list.",
                 cautionText:"This event was created by others.<br>Save this event on your own responsibility.",
+                invalidDateTitle:"Invalid Date",
+                invalidDateText:"You received an event with invalid date.",
                 buttons:{
                     cancel:"cancel",
                     submit:"save"
@@ -172,6 +174,8 @@ const messages = {
                 title:"イベントの共有",
                 confirmText:"次の共有されたイベントをイベントリストに追加しますか？",
                 cautionText:"このイベントは、他のユーザーが作成したものです。<br>このイベントを追加することによる損害などについて、開発者は一切の責任を負いません。",
+                invalidDateTitle:"無効な日付",
+                invalidDateText:"無効な日付のイベントが共有されました。",
                 buttons:{
                     cancel:"キャンセル",
                     submit:"追加"

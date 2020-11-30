@@ -32,6 +32,7 @@
     <script src="components/tsukuyomi/tsukuyomi-messages.js"></script>
     <script src="components/vue-i18n/vue-i18n.js"></script>
     <script src="components/dexiejs/dexie.min.js"></script>
+    <script src="components/tsukuyomi/tsukuyomi-func.js"></script>
 </head>
 
 <body>
@@ -109,11 +110,11 @@
                     </v-list-item-group>
                 </v-list>
             </v-navigation-drawer>
-            <v-content>
+            <v-main>
                 <v-container>
                     <router-view :key="$route.fullPath"></router-view>
                 </v-container>
-            </v-content>
+            </v-main>
 
         </v-app>
     </div>

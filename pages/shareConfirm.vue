@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!isPending">
+    <div v-if="!isPending && validDate">
       <p class="text-h5">{{ $t("addConfirm.share.title") }}</p>
       <p>{{ $t("addConfirm.share.confirmText") }}</p>
       <!--<p>タイトル：{{newEvent.title}}</p>
@@ -23,6 +23,11 @@
         </v-btn>
       </p>
     </div>
+    <div v-if="!isPending && !validDate">
+      <p class="text-h5">{{$t("addConfirm.share.invalidDateTitle")}}</p>
+      <p>{{$t("addConfirm.share.invalidDateText")}}</p>
+      <p><v-btn to="/" replace><v-icon>mdi-home</v-icon> HOME</v-btn></p>
+    </div>
     <div v-if="isPending" class="text-center">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
@@ -33,6 +38,7 @@ module.exports = {
   data() {
     return {
       isPending:true,
+      validDate: true,
       newEvent: {
         year: this.$route.params.yyyymmdd.split("-")[0],
         month: this.$route.params.yyyymmdd.split("-")[1],
@@ -42,12 +48,22 @@ module.exports = {
     };
   },
   mounted() {
+    //console.log(tsukuyomi.isValidDate(this.$route.params.yyyymmdd))
+    //check date valid
+    if(!tsukuyomi.isValidDate(this.$route.params.yyyymmdd)){
+      this.validDate = false;
+      this.isPending = false;
+      return;
+    }
+    else{
+      this.validDate = true;
+    }
+    console.log("pending")
     //check whether shared events has already registered.
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({
       events: "title",
     });
-
     const self = this;
     db.events.get(this.newEvent.title).then(function (event) {
       if (event !== undefined) {
@@ -66,6 +82,8 @@ module.exports = {
           if(remainDayCount >= 0) router.replace(`/?highlight=${self.$route.params.title}`);
           //past
           else router.replace(`/past?highlight=${self.$route.params.title}`);
+        }else{
+          self.isPending = false;
         }
       }else{
         self.isPending = false;
