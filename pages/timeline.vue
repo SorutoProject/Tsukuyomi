@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-h5">
+    <p class="text-h6">
       {{ $t("timeline.title") }}
     </p>
     <!--loader-->

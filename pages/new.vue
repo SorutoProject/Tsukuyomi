@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="text-h5">
+        <div class="text-h6">
           <p>
             {{$t("new.newEventText")}}
           </p>
