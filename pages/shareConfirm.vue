@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div v-if="!isPending">
       <p class="text-h5">{{ $t("addConfirm.share.title") }}</p>
       <p>{{ $t("addConfirm.share.confirmText") }}</p>
       <!--<p>タイトル：{{newEvent.title}}</p>
@@ -23,12 +23,16 @@
         </v-btn>
       </p>
     </div>
+    <div v-if="isPending" class="text-center">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </div>
   </div>
 </template>
 <script>
 module.exports = {
   data() {
     return {
+      isPending:true,
       newEvent: {
         year: this.$route.params.yyyymmdd.split("-")[0],
         month: this.$route.params.yyyymmdd.split("-")[1],
@@ -63,6 +67,8 @@ module.exports = {
           //past
           else router.replace(`/past?highlight=${self.$route.params.title}`);
         }
+      }else{
+        self.isPending = false;
       }
     });
   },
