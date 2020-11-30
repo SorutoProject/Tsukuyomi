@@ -57,6 +57,13 @@
                                 </v-list-item-subtitle>
                             </v-list-item-content>
                         </v-list-item>
+                        <v-list-item to="/new" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-plus</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.newEvent")}}</v-list-item-title>
+                        </v-list-item>
+                        <v-divider></v-divider>
                         <v-list-item to="/" @click="drawer = false">
                             <v-list-item-icon>
                                 <v-icon>mdi-home</v-icon>
@@ -76,12 +83,6 @@
                             <v-list-item-title>{{$t("menu.past")}}</v-list-item-title>
                         </v-list-item>
                         <v-divider></v-divider>
-                        <v-list-item to="/new" @click="drawer = false">
-                            <v-list-item-icon>
-                                <v-icon>mdi-plus</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>{{$t("menu.newEvent")}}</v-list-item-title>
-                        </v-list-item>
                         <v-list-item to="/share-multiple" @click="drawer = false">
                             <v-list-item-icon>
                                 <v-icon>mdi-share-all</v-icon>
@@ -115,7 +116,21 @@
                     <router-view :key="$route.fullPath"></router-view>
                 </v-container>
             </v-main>
-
+            <!--bottom-navigation-->
+            <v-bottom-navigation app color="primary" shift>
+              <v-btn to="/new">
+                <span>{{$t("bottomNav.newEvent")}}</span>
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+              <v-btn to="/">
+                <span>{{$t("bottomNav.home")}}</span>
+                <v-icon>mdi-home</v-icon>
+              </v-btn>
+              <v-btn to="/timeline">
+                <span>{{$t("bottomNav.timeline")}}</span>
+                <v-icon>mdi-timeline</v-icon>
+              </v-btn>
+            </v-bottom-navigation>
         </v-app>
     </div>
 </body>

@@ -5,12 +5,17 @@ const messages = {
             description: "How many days do I have?",
         },
         menu: {
-            home: "HOME",
+            home: "Home",
             newEvent: "New",
             timeline:"Timeline",
             about:"About",
             shareMultiple:"Share Multiple",
             past:"Past Events"
+        },
+        bottomNav:{
+            newEvent:"New",
+            home:"Home",
+            timeline:"Timeline"
         },
         card: {
             dayleft: {
@@ -123,6 +128,11 @@ const messages = {
             about:"このアプリについて",
             shareMultiple:"まとめて共有",
             past:"過去のイベント"
+        },
+        bottomNav:{
+            newEvent:"新規作成",
+            home:"ホーム",
+            timeline:"タイムライン"
         },
         card: {
             dayleft: {

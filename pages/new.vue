@@ -1,10 +1,9 @@
 <template>
     <div>
         <div class="text-h5">
-            <p><v-btn icon elevation="0" v-on:click="goBack">
-                <v-icon>mdi-arrow-left</v-icon>
-            </v-btn> 
-            {{$t("new.newEventText")}}</p>
+          <p>
+            {{$t("new.newEventText")}}
+          </p>
         </div>
             <p>
                 <v-text-field
@@ -13,11 +12,11 @@
                     :placeholder="$t('new.titleTextBox.placeholder')"
                     counter="50"
                     maxlength="50"
-                    clearable    
+                    clearable
                 ></v-text-field>
             </p>
             <p>
-                <span class="text-caption">{{$t("new.startDateText")}}</span><br>     
+                <span class="text-caption">{{$t("new.startDateText")}}</span><br>
                 <v-date-picker
                 v-model="newEvent.date"
                 :locale="userLang"
@@ -28,7 +27,7 @@
             <p>
                 <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" class="teal white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
             </p>
-        
+
     </div>
 </template>
 <script>

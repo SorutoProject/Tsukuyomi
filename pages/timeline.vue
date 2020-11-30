@@ -1,9 +1,6 @@
 <template>
   <div>
     <p class="text-h5">
-      <v-btn icon elevation="0" v-on:click="goBack">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
       {{ $t("timeline.title") }}
     </p>
     <!--loader-->
