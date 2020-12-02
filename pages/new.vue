@@ -22,6 +22,7 @@
                 :locale="userLang"
                 :day-format="date => new Date(date).getDate()"
                 :min="today"
+                color="#F57F17"
                 ></v-date-picker>
             </p>
             <p>
