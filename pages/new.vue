@@ -44,7 +44,16 @@ module.exports = {
     },
     mounted(){
         const today = new Date();
-        this.today = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        const year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        if(month.toString().length == 1){
+            month = "0" + month;
+        }
+        let date = today.getDate();
+        if(date.toString().length == 1){
+            date = "0" + date;
+        }
+        this.today = `${year}-${month}-${date}`;
     },
     methods:{
         submit(){
