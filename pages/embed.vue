@@ -16,8 +16,12 @@ module.exports = {
         }
     },
     created(){
-        document.querySelector(".v-app-bar").style.display = "none";
-        document.querySelector("html").style.overflow = "auto";
+        if(window.parent !== window){
+            document.querySelector(".v-app-bar").style.display = "none";
+            document.querySelector(".v-bottom-navigation").style.display = "none";
+            document.querySelector(".v-main").style.padding = "";
+            document.querySelector("html").style.overflow = "auto";
+        }
     }
 }
 </script>
