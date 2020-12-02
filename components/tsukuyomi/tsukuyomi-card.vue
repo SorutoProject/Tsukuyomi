@@ -34,7 +34,7 @@
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
           <v-btn text v-if="checkable" v-on:click="checked = !checked">
-            <v-icon v-if="checked" color="blue darken-1">mdi-checkbox-marked</v-icon>
+            <v-icon v-if="checked" color="yellow darken-4">mdi-checkbox-marked</v-icon>
             <v-icon v-if="!checked">mdi-checkbox-blank-outline</v-icon>
             　{{$t("card.checkText")}}
           </v-btn>

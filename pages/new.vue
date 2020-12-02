@@ -13,6 +13,7 @@
                     counter="50"
                     maxlength="50"
                     clearable
+                    color="#F57F17"
                 ></v-text-field>
             </p>
             <p>
@@ -26,7 +27,7 @@
                 ></v-date-picker>
             </p>
             <p>
-                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" class="teal white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
+                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" elevation="0" class="yellow darken-4 white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
             </p>
 
     </div>

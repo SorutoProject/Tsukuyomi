@@ -18,7 +18,7 @@
         <v-btn to="/" text>
           {{ $t("addConfirm.share.buttons.cancel") }}
         </v-btn>
-        <v-btn @click="applyEvent" text class="teal white--text">
+        <v-btn @click="applyEvent" text class="yellow darken-4 white--text">
           <v-icon>mdi-plus</v-icon> {{ $t("addConfirm.share.buttons.submit") }}
         </v-btn>
       </p>

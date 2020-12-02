@@ -28,7 +28,7 @@
       <v-btn to="/" text>
         {{$t("addConfirm.shareMultiple.buttons.cancel")}}
       </v-btn>
-      <v-btn @click="applyEvent" text class="teal white--text" :loading="loading">
+      <v-btn @click="applyEvent" text class="yellow darken-4 white--text" :loading="loading">
         <v-icon>mdi-plus</v-icon> {{$t("addConfirm.shareMultiple.buttons.submit")}}
       </v-btn>
     </p>

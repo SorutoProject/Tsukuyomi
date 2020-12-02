@@ -11,7 +11,7 @@
                 <v-btn to="/new" text>
                     {{$t("addConfirm.add.buttons.cancel")}}
                 </v-btn>
-                <v-btn @click="applyEvent">
+                <v-btn @click="applyEvent" text class="yellow darken-4 white--text">
                   <v-icon>mdi-plus</v-icon> {{$t("addConfirm.add.buttons.submit")}}
                 </v-btn>
             </p>
