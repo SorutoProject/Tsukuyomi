@@ -3,7 +3,7 @@
     "short_name": "Tsukuyomi",
     "icons": [
       {
-        "src": "tsukuyomi.png",
+        "src": "tsukuyomi-logo_v2.png",
         "type": "image/png",
         "sizes": "256x256"
       }
