@@ -53,9 +53,17 @@
                                     {{$t("app.name")}}
                                 </v-list-item-title>
                                 <v-list-item-subtitle>
-                                    {{$t("app.description")}}
+                                    {{$t("app.description")}}<br>
                                 </v-list-item-subtitle>
                             </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item @click="pwaInstall();drawer = false;" v-if="installable">
+                            <v-list-item-icon>
+                                <v-icon>mdi-download-circle</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>
+                                {{$t("menu.pwaInstall")}}
+                            </v-list-item-title>
                         </v-list-item>
                         <v-list-item to="/new" @click="drawer = false">
                             <v-list-item-icon>
@@ -189,7 +197,8 @@
         i18n,
         vuetify: new Vuetify(),
         data: {
-            "drawer": false
+            "drawer": false,
+            "installable":null
         },
         created: function () {
             //set darkmode setting
@@ -214,11 +223,20 @@
             if (isOpenedInApp === true) {
                 router.replace("/alert")
             }
+            const self = this;
+            setTimeout(function(){
+                self.installable = tsukuyomi_pwa_prompt !== null;
+            },2000);
         },
         watch: {
             //watch $vuetify.theme.dark to save darkmode setting
             '$vuetify.theme.dark': function (setting) {
                 localStorage.setItem("tsukuyomi-theme-dark", setting);
+            }
+        },
+        methods:{
+            pwaInstall(){
+                tsukuyomi.pwaInstall();
             }
         }
     });

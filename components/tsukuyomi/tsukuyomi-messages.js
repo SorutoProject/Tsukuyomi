@@ -10,7 +10,8 @@ const messages = {
             timeline:"Timeline",
             about:"About",
             shareMultiple:"Share Multiple",
-            past:"Past Events"
+            past:"Past Events",
+            pwaInstall:"Install TSUKUYOMI"
         },
         bottomNav:{
             newEvent:"New",
@@ -127,7 +128,8 @@ const messages = {
             timeline:"タイムライン",
             about:"このアプリについて",
             shareMultiple:"まとめて共有",
-            past:"過去のイベント"
+            past:"過去のイベント",
+            pwaInstall:"アプリをインストール"
         },
         bottomNav:{
             newEvent:"新規作成",
