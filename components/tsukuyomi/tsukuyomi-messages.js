@@ -11,7 +11,8 @@ const messages = {
             about:"About",
             shareMultiple:"Share Multiple",
             past:"Past Events",
-            pwaInstall:"Install TSUKUYOMI"
+            pwaInstall:"Install TSUKUYOMI",
+            manage:"Manage Your Data"
         },
         bottomNav:{
             newEvent:"New",
@@ -114,6 +115,14 @@ const messages = {
         past:{
             title:"Past Events",
             noEventsFoundText:"No Past Events."
+        },
+        manage:{
+            title:"Manage Your Data",
+            message:"Let's take a backup in case of data loss.",
+            buttons:{
+                import:"Import",
+                export:"Export"
+            }
         }
 
     },
@@ -129,7 +138,8 @@ const messages = {
             about:"このアプリについて",
             shareMultiple:"まとめて共有",
             past:"過去のイベント",
-            pwaInstall:"アプリをインストール"
+            pwaInstall:"アプリをインストール",
+            manage:"データ管理"
         },
         bottomNav:{
             newEvent:"新規作成",
@@ -232,6 +242,14 @@ const messages = {
         past:{
             title:"過去のイベント",
             noEventsFoundText:"過去のイベントはありません"
+        },
+        manage:{
+            title:"データ管理",
+            message:"データが消失したときのために、データのバックアップを取りましょう",
+            buttons:{
+                import:"インポート",
+                export:"エクスポート"
+            }
         }
     }
 }

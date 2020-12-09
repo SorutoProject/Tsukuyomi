@@ -97,6 +97,12 @@
                             </v-list-item-icon>
                             <v-list-item-title>{{$t("menu.shareMultiple")}}</v-list-item-title>
                         </v-list-item>
+                        <v-list-item to="/manage" @click="drawer = false">
+                            <v-list-item-icon>
+                                <v-icon>mdi-chart-donut</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{$t("menu.manage")}}</v-list-item-title>
+                        </v-list-item>
                         <v-divider></v-divider>
                         <v-list-item to="/about" @click="drawer = false">
                             <v-list-item-icon>
@@ -174,6 +180,8 @@
         { path: "/timeline", component: httpVueLoader("./pages/timeline.vue") },
         //passed events page
         { path: "/past", component: httpVueLoader("./pages/past.vue") },
+        //manage page
+        {path: "/manage", component:httpVueLoader("./pages/manage.vue")},
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]
