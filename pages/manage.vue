@@ -6,7 +6,7 @@
       >
       {{ $t("manage.title") }}
     </p>
-    <p>{{ $t("manage.message") }}</p>
+    <p class="text-subtitle-2">{{ $t("manage.message") }}</p>
     <p>
       <v-btn text @click="dbImport"><v-icon>mdi-database-import</v-icon>　{{$t("manage.buttons.import")}}</v-btn>
     </p>
