@@ -12,7 +12,7 @@
         <v-icon>mdi-share-all</v-icon>
       </v-btn>
     </p>
-    <span class="text-h6">{{ $t("index.eventListText") }}</span>
+    <!--<span class="text-h6">{{ $t("index.eventListText") }}</span>-->
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
