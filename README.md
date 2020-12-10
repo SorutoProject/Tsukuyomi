@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/SorutoProject/Tsukuyomi/main/tsukuyomi.png" width="24"> Tsukuyomi
+# <img src="https://raw.githubusercontent.com/SorutoProject/Tsukuyomi/main/tsukuyomi-logo_v2.png" width="24"> Tsukuyomi
 > How many days do you have until the event?  
 
 You can now use Tsukuyomi on https://tsukuyomi.tk
