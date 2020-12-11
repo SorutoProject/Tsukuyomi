@@ -1,8 +1,5 @@
 <template>
   <div>
-    <p class="text-h6">
-      {{ $t("timeline.title") }}
-    </p>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -43,12 +40,10 @@ module.exports = {
       isPending: true,
     };
   },
-  methods: {
-    goBack() {
-      router.go(-1);
-    },
-  },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("timeline.title"));
+
     //Get events from DB
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({

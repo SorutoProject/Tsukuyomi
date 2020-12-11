@@ -21,5 +21,18 @@ const tsukuyomi = {
     if(tsukuyomi_pwa_prompt){
       tsukuyomi_pwa_prompt.prompt();
     }
+  },
+  app:{
+    changeTitle:function(title){
+      app.title = title;
+
+      //change document.title
+      if(app.$route.path !== "/"){
+        //add " - {appname}" after the title
+        document.title = title + " - " + app.$t("app.name");
+      }else{
+        document.title = title;
+      }
+    }
   }
 }

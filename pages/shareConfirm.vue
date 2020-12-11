@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-if="!isPending && validDate">
-      <p class="text-h5">{{ $t("addConfirm.share.title") }}</p>
       <p>{{ $t("addConfirm.share.confirmText") }}</p>
       <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
@@ -48,6 +47,9 @@ module.exports = {
     };
   },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("addConfirm.share.title"));
+
     //console.log(tsukuyomi.isValidDate(this.$route.params.yyyymmdd))
     //check date valid
     if(!tsukuyomi.isValidDate(this.$route.params.yyyymmdd)){

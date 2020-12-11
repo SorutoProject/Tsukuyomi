@@ -1,12 +1,7 @@
 <template>
   <div>
-    <p class="text-h6">
-      <v-btn icon elevation="0" v-on:click="goBack">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      About TSUKUYOMI
-    </p>
     <p>{{ $t("app.description") }}</p>
+    <p><img style="height:36px;" src="./tsukuyomi-logo_v2.svg"></p>
     <p class="text--secondary text-caption">
       &copy; 2020 Soruto Project<br />Licensed under the MIT.
     </p>
@@ -23,15 +18,14 @@
 </template>
 <script>
 module.exports = {
+  mounted(){
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("About"));
+  },
   data() {
     return {
       siteURL: new URL("./", location.href).href,
     };
-  },
-  methods: {
-    goBack() {
-      router.go(-1);
-    },
-  },
+  }
 };
 </script>

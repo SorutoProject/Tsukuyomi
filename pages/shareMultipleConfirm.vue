@@ -1,7 +1,6 @@
 <template>
 <div>
   <div>
-    <p class="text-h5">{{$t("addConfirm.shareMultiple.title")}}</p>
     <p>{{$t("addConfirm.shareMultiple.confirmText")}}</p>
     <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
@@ -44,6 +43,9 @@ module.exports = {
     }
   },
   mounted(){
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("addConfirm.shareMultiple.title"));
+
     //build newEvents
     //eventsSet Format: date1||eventTitle1||date2||eventTitle2||...
 

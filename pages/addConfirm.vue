@@ -1,7 +1,6 @@
 <template>
     <div>
         <div>
-            <p class="text-h5">{{$t("addConfirm.add.title")}}</p>
             <p>{{$t("addConfirm.add.confirmText")}}</p>
             <!--<p>タイトル：{{newEvent.title}}</p>
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
@@ -20,6 +19,10 @@
 </template>
 <script>
 module.exports = {
+    mounted(){
+        //Update Title
+        tsukuyomi.app.changeTitle(this.$t("addConfirm.add.title"));
+    },
     data(){
         return {
             newEvent:{

@@ -1,11 +1,6 @@
 <template>
   <div>
     <div v-if="existEvent">
-      <p class="text-h5">
-        <v-btn icon elevation="0" v-on:click="goBack">
-          <v-icon>mdi-arrow-left</v-icon> </v-btn
-        >　{{$t("share.title")}}
-      </p>
       <span class="text--secondary">{{$t("share.subtext")}}</span>
       <tsukuyomi-card
         :title="this.$route.params.title"
@@ -161,6 +156,8 @@ module.exports = {
     });
   },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("share.title"));
     //Create google calendar url
 
     const zerofill = function (num) {
@@ -216,9 +213,6 @@ module.exports = {
 
       //show copied message
       this.tagCopied = true;
-    },
-    goBack(){
-      router.go(-1);
     }
   }
 };

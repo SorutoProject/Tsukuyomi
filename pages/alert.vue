@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p class="text-h6">お知らせ(NOTICE)</p>
         <p>アプリ内ブラウザの場合、正常にイベントが保存されない可能性があります。続行しますか？</p>
         <p class="text--secondary">Google ChromeやSafariを利用することをおすすめします。</p>
         <p>You should use this site not in the "in App Browser" but in Chrome or Safari.</p>
@@ -18,6 +17,10 @@
 </template>
 <script>
 module.exports = {
+    mounted(){
+        //Update Title
+        tsukuyomi.app.changeTitle("Notice");
+    },
     data(){
         return {
             "siteURL": new URL("./", location.href).href

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <p class="text-h5"><v-btn icon elevation="0" v-on:click="goBack">
-      <v-icon>mdi-arrow-left</v-icon></v-btn> {{$t("shareMultiple.title")}}</p>
     <p>
       <v-btn text v-on:click="share">
         <v-icon>mdi-share-all</v-icon>
@@ -59,6 +57,9 @@ module.exports = {
     };
   },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("shareMultiple.title"));
+
     //Get events from DB
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({
@@ -93,9 +94,6 @@ module.exports = {
       });
   },
   methods:{
-    goBack(){
-      router.go(-1);
-    },
     share(){
       //extract events from checked cards
       const checkedElems = document.querySelectorAll(`.tsukuyomi-card[data-checked="true"]`);

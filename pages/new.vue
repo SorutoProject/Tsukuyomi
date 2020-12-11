@@ -1,10 +1,5 @@
 <template>
     <div>
-        <div class="text-h6">
-          <p>
-            {{$t("new.newEventText")}}
-          </p>
-        </div>
             <p>
                 <v-text-field
                     v-model="newEvent.title"
@@ -45,6 +40,9 @@ module.exports = {
         }
     },
     mounted(){
+        //Update Title
+        tsukuyomi.app.changeTitle(this.$t("new.title"));
+
         const today = new Date();
         const year = today.getFullYear();
         let month = today.getMonth() + 1;
@@ -60,9 +58,6 @@ module.exports = {
     methods:{
         submit(){
             router.push(`/add/${this.newEvent.date}/${this.newEvent.title}`);
-        },
-        goBack(){
-            router.go(-1);
         }
     }
 }

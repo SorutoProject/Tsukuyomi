@@ -54,6 +54,8 @@ module.exports = {
     };
   },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("app.name"));
     //Get events from DB
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({

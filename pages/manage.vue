@@ -1,11 +1,5 @@
 <template>
   <div>
-    <p class="text-h5">
-      <v-btn icon elevation="0" v-on:click="goBack"
-        ><v-icon>mdi-arrow-left</v-icon></v-btn
-      >
-      {{ $t("manage.title") }}
-    </p>
     <p class="text-subtitle-2">{{ $t("manage.message") }}</p>
     <p>
       <v-btn text @click="dbImport"><v-icon>mdi-database-import</v-icon>　{{$t("manage.buttons.import")}}</v-btn>
@@ -17,10 +11,11 @@
 </template>
 <script>
 module.exports = {
+  mounted(){
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("manage.title"));
+  },
   methods: {
-    goBack() {
-      router.go(-1);
-    },
     dbImport() {
       //create new file prompt
       const filePrompt = document.createElement("input");

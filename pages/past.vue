@@ -1,7 +1,5 @@
 <template>
   <div>
-    <p class="text-h5"><v-btn icon elevation="0" v-on:click="goBack">
-      <v-icon>mdi-arrow-left</v-icon></v-btn> {{$t("past.title")}}</p>
     <!--loader-->
     <p class="text-center" v-if="isPending">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -42,6 +40,8 @@ module.exports = {
     };
   },
   mounted() {
+    //Update Title
+    tsukuyomi.app.changeTitle(this.$t("past.title"));
     //Get events from DB
     const db = new Dexie("Tsukuyomi_events");
     db.version(1).stores({
@@ -86,9 +86,6 @@ module.exports = {
       });
   },
   methods:{
-    goBack(){
-      router.go(-1);
-    },
     highlightCard(title) {
       //get card element that has the "title" given as argument
       const targetCard = document.querySelector(
