@@ -47,7 +47,7 @@ const messages = {
             notInFrameText: "This page is only available in iframe."
         },
         new: {
-            newEventText: "New",
+            title: "New",
             titleTextBox: {
                 label: "Title",
                 placeholder: "Ex) The School Festival"
@@ -174,7 +174,7 @@ const messages = {
             notInFrameText: "このページはiframe内でのみ有効です。"
         },
         new: {
-            newEventText: "新しいイベントを作成",
+            title: "新しいイベントを作成",
             titleTextBox: {
                 label: "イベントの名称",
                 placeholder: "例：文化祭"
