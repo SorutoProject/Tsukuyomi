@@ -43,6 +43,9 @@
     >
       {{ $t("index.noEventsFoundText") }}
     </p>
+    <v-snackbar v-model="isHighlight" timeout="8000">
+      <span v-html="$t('index.highlightedTextHTML')"></span>
+    </v-snackbar>
   </div>
 </template>
 <script>
@@ -51,6 +54,7 @@ module.exports = {
     return {
       events: [],
       isPending: true,
+      isHighlight:false
     };
   },
   mounted() {
@@ -94,6 +98,7 @@ module.exports = {
           this.$nextTick(function () {
             setTimeout(function () {
               self.highlightCard(self.$route.query.highlight);
+              self.isHighlight = true;
             }, 500);
           });
         }
