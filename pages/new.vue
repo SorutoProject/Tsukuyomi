@@ -22,7 +22,7 @@
                 ></v-date-picker>
             </p>
             <p>
-                <v-btn @click="submit" :disabled="newEvent.title === '' || newEvent.date === ''" elevation="0" class="yellow darken-4 white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
+                <v-btn @click="submit" :disabled="invalidTitle || newEvent.title === '' || newEvent.date === ''" elevation="0" class="yellow darken-4 white--text"><v-icon>mdi-plus</v-icon> {{$t("new.submitText")}}</v-btn>
             </p>
 
     </div>
@@ -36,7 +36,8 @@ module.exports = {
                 "date":""
             },
             "today":"",
-            "userLang":navigator.language
+            "userLang":navigator.language,
+            "invalidTitle":false
         }
     },
     mounted(){
@@ -58,6 +59,13 @@ module.exports = {
     methods:{
         submit(){
             router.push(`/add/${this.newEvent.date}/${this.newEvent.title}`);
+        }
+    },
+    watch:{
+        "newEvent.title":function(title){
+            //block |
+            if(title.match(/\|/) !== null) this.invalidTitle = true;
+            else this.invalidTitle = false;
         }
     }
 }
