@@ -41,8 +41,7 @@ const messages = {
         index: {
             newEvent: "New",
             eventListText: "Events List",
-            noEventsFoundText: "No Events.",
-            highlightedTextHTML:`Tap <i class="mdi mdi-home"></i> to deselect highlighted card.`
+            noEventsFoundText: "No Events."
         },
         embed: {
             notInFrameText: "This page is only available in iframe."
@@ -171,8 +170,7 @@ const messages = {
         index: {
             newEvent: "新しいイベントを作成",
             eventListText: "イベントリスト",
-            noEventsFoundText: "登録されているイベントはありません",
-            highlightedTextHTML:`カードのハイライトを解除するには <i class="mdi mdi-home"></i> をタップします`
+            noEventsFoundText: "登録されているイベントはありません"
         },
         embed: {
             notInFrameText: "このページはiframe内でのみ有効です。"
