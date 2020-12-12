@@ -1,9 +1,14 @@
 <template>
   <div>
     <p>
-      <v-btn text v-on:click="share">
-        <v-icon>mdi-share-all</v-icon>
-        　{{$t("shareMultiple.buttons.share")}}
+      <v-btn text @click="share">
+        <v-icon>mdi-share-all</v-icon>　{{$t("shareMultiple.buttons.share")}}
+      </v-btn>
+      <v-btn text @click="selectAll">
+        {{$t("shareMultiple.buttons.selectAll")}}
+      </v-btn>
+      <v-btn text @click="deselect" color="red">
+        {{$t("shareMultiple.buttons.deselect")}}
       </v-btn>
     </p>
     <!--loader-->
@@ -124,6 +129,16 @@ module.exports = {
 
       //show copied message
       this.copied = true;
+    },
+    selectAll(){
+      document.querySelectorAll(".tsukuyomi-card:not([data-checked]) .tsukuyomi-card-check").forEach(function(check){
+        check.click();
+      });
+    },
+    deselect(){
+      document.querySelectorAll(".tsukuyomi-card[data-checked] .tsukuyomi-card-check").forEach(function(check){
+        check.click();
+      });
     }
   }
 };

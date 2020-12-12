@@ -33,7 +33,7 @@
           <v-btn text v-if="addable" :href="addURL" target="_blank">
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
-          <v-btn text v-if="checkable" v-on:click="checked = !checked">
+          <v-btn text v-if="checkable" v-on:click="checked = !checked" class="tsukuyomi-card-check">
             <v-icon v-if="checked" color="yellow darken-4">mdi-checkbox-marked</v-icon>
             <v-icon v-if="!checked">mdi-checkbox-blank-outline</v-icon>
             　{{$t("card.checkText")}}

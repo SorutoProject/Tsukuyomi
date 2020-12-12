@@ -103,7 +103,9 @@ const messages = {
           urlCopied:"Copied Sharing URL",
           noSelected:"Select at least one event.",
           buttons:{
-            share:"Share Selected Events"
+            share:"Share",
+            selectAll:"Select All",
+            deselect:"Deselect"
           }
         },
         timeline:{
@@ -230,7 +232,9 @@ const messages = {
           urlCopied:"URLをコピーしました",
           noSelected:"少なくとも1つ以上のイベントを選択してください",
           buttons:{
-            share:"選択したイベントを共有"
+            share:"共有する",
+            selectAll:"すべて選択",
+            deselect:"選択解除"
           }
         },
         timeline:{
