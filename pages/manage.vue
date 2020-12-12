@@ -2,16 +2,24 @@
   <div>
     <p class="text-subtitle-2">{{ $t("manage.message") }}</p>
     <p>
-      <v-btn text @click="dbImport"><v-icon>mdi-database-import</v-icon>　{{$t("manage.buttons.import")}}</v-btn>
+      <v-btn text @click="dbExport"
+        ><v-icon>mdi-database-export</v-icon>　{{
+          $t("manage.buttons.export")
+        }}</v-btn
+      >
     </p>
     <p>
-      <v-btn text @click="dbExport"><v-icon>mdi-database-export</v-icon>　{{$t("manage.buttons.export")}}</v-btn>
+      <v-btn text @click="dbImport"
+        ><v-icon>mdi-database-import</v-icon>　{{
+          $t("manage.buttons.import")
+        }}</v-btn
+      >
     </p>
   </div>
 </template>
 <script>
 module.exports = {
-  mounted(){
+  mounted() {
     //Update Title
     tsukuyomi.app.changeTitle(this.$t("manage.title"));
   },
@@ -50,9 +58,14 @@ module.exports = {
         //download JSON
         const json = JSON.stringify(events);
         const a = document.createElement("a");
-        const blob = new Blob([json], {type:"application/json"});
+        const blob = new Blob([json], { type: "application/json" });
         a.href = window.URL.createObjectURL(blob);
-        a.download = new Date() + ".tsukuyomibackup";
+        const time = new Date().toISOString().split("T");
+        a.download =
+          time[0] +
+          "_" +
+          time[1].split(".")[0].split(":").join("-") +
+          ".tsukuyomibackup";
         a.click();
       });
     },
