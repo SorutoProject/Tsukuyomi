@@ -46,7 +46,7 @@ module.exports = {
     //Get Events From DB
     tsukuyomi.db.events.toArray(function (events) {
       let calendarEvents = [];
-      events.forEach(async function (event) {
+      events.forEach(function (event) {
         const eventDate = new Date(event.date);
         eventDate.setHours(0, 0, 0);
         //make template for the calendar
@@ -54,9 +54,9 @@ module.exports = {
           name: event.title,
           start: eventDate,
           timed: false,
-          color: await tsukuyomi.getColorFromString(event.title),
+          color: "yellow darken-4",
         };
-        console.log(calendarEvent);
+        //console.log(calendarEvent);
         calendarEvents.push(calendarEvent);
       });
       self.events = calendarEvents;
