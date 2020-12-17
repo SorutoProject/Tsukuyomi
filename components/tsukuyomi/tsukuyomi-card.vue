@@ -1,18 +1,33 @@
 <template>
   <div v-if="!removeCompleted">
-    <v-card :elevation="elevation" :data-checked="checked" :data-date="date" :data-title="title" class="tsukuyomi-card">
+    <v-card
+      :elevation="elevation"
+      :data-checked="checked"
+      :data-date="date"
+      :data-title="title"
+      class="tsukuyomi-card"
+    >
       <div v-if="!removed">
         <v-card-text>
-          <span v-if="remainDayCount > 0">{{$t("card.dayleft.before")
-          }}<span class="display-1 text-h5 font-weight-bold text--primary">{{
-            remainDayCount
-          }}</span
-          >{{ $t("card.dayleft.after") }}</span>
-          <span v-if="remainDayCount === 0" class="display-1 text-h5 font-weight-bold text--primary">
-            {{$t("card.today")}}
+          <span v-if="remainDayCount > 0">
+            {{ $t("card.dayleft.before") }}
+            <span class="display-1 text-h5 font-weight-bold text--primary">
+              {{ remainDayCount }}
+            </span>
+            {{ $t("card.dayleft.after") }}</span
+          >
+          <span
+            v-if="remainDayCount === 0"
+            class="display-1 text-h5 font-weight-bold text--primary"
+          >
+            {{ $t("card.today") }}
           </span>
-          <span v-if="remainDayCount < 0" class="display-1 text-h5 text--secondary">
-            {{$t("card.passed")}}
+          <span v-if="remainDayCount < 0">
+            {{ $t("card.passed.before") }}
+            <span class="display-1 text-h5 font-weight-bold text--secondary">
+              {{remainDayCount * -1}}
+            </span>
+            {{ $t("card.passed.after")}}
           </span>
 
           <v-card-title>{{ title }}</v-card-title>
@@ -33,10 +48,17 @@
           <v-btn text v-if="addable" :href="addURL" target="_blank">
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
-          <v-btn text v-if="checkable" v-on:click="checked = !checked" class="tsukuyomi-card-check">
-            <v-icon v-if="checked" color="yellow darken-4">mdi-checkbox-marked</v-icon>
+          <v-btn
+            text
+            v-if="checkable"
+            v-on:click="checked = !checked"
+            class="tsukuyomi-card-check"
+          >
+            <v-icon v-if="checked" color="yellow darken-4"
+              >mdi-checkbox-marked</v-icon
+            >
             <v-icon v-if="!checked">mdi-checkbox-blank-outline</v-icon>
-            　{{$t("card.checkText")}}
+            　{{ $t("card.checkText") }}
           </v-btn>
         </v-card-actions>
       </div>
@@ -77,7 +99,15 @@
 </template>
 <script>
 module.exports = {
-  props: ["title", "date", "removable", "sharable", "elevation", "addable","checkable"],
+  props: [
+    "title",
+    "date",
+    "removable",
+    "sharable",
+    "elevation",
+    "addable",
+    "checkable",
+  ],
   data() {
     this.$i18n.locale = userLang;
     return {
@@ -85,7 +115,7 @@ module.exports = {
       removeConfirm: false,
       removed: false,
       removeCompleted: false,
-      checked:false,
+      checked: false,
 
       addURL:
         new URL("./", location.href).href +
@@ -94,7 +124,7 @@ module.exports = {
         "/" +
         encodeURIComponent(this.title) +
         "/share",
-      updateDayCountTimer:null
+      updateDayCountTimer: null,
     };
   },
   methods: {
@@ -120,13 +150,13 @@ module.exports = {
     };
     calclateDayCount();
     //Calclate how many days every a second
-    this.updateDayCountTimer = setInterval(function(){
+    this.updateDayCountTimer = setInterval(function () {
       calclateDayCount();
     }, 1000);
   },
-  destroyed(){
+  destroyed() {
     clearInterval(this.updateDayCountTimer);
-  }
+  },
 };
 </script>
 <style>
@@ -137,15 +167,15 @@ module.exports = {
   width: 100%;
 }
 
-.tsukuyomi-card.theme--dark.elevation-0{
-  background:rgba(0,0,0,0) !important;
+.tsukuyomi-card.theme--dark.elevation-0 {
+  background: rgba(0, 0, 0, 0) !important;
 }
 
-.tsukuyomi-card.highlight{
-  background:#B3E5FC !important;
+.tsukuyomi-card.highlight {
+  background: #b3e5fc !important;
 }
 
-.tsukuyomi-card.theme--dark.highlight{
-  background:#01579B !important;
+.tsukuyomi-card.theme--dark.highlight {
+  background: #01579b !important;
 }
 </style>
