@@ -141,13 +141,8 @@ module.exports = {
   },
   created() {
     //Check the event is exist
-    const db = new Dexie("Tsukuyomi_events");
-    db.version(1).stores({
-      events: "title",
-    });
-
     const self = this;
-    db.events.get(this.$route.params.title).then((event) => {
+    tsukuyomi.db.events.get(this.$route.params.title).then((event) => {
       if (event !== undefined) {
         self.existEvent = true;
       } else {

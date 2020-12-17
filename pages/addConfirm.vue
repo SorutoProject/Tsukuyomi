@@ -36,12 +36,7 @@ module.exports = {
     methods: {
         applyEvent(){
             //Save to IndexedDB
-            const db = new Dexie("Tsukuyomi_events");
-            db.version(1).stores({
-                events:"title"
-            });
-
-            db.events.put({
+            tsukuyomi.db.events.put({
                 title: this.newEvent.title,
                 date: `${this.newEvent.year}-${this.newEvent.month}-${this.newEvent.date}`
             })

@@ -103,12 +103,7 @@ module.exports = {
       this.removed = true;
 
       //Remove from the DB
-      const db = new Dexie("Tsukuyomi_events");
-      db.version(1).stores({
-        events: "title",
-      });
-
-      db.events.delete(this.title);
+      tsukuyomi.db.events.delete(this.title);
     },
   },
   mounted() {

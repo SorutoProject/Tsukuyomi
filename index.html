@@ -18,9 +18,9 @@
 
     <title>TSUKUYOMI</title>
     <style>
-    [v-cloak]{
-      display:none;
-    }
+        [v-cloak] {
+            display: none;
+        }
     </style>
     <!--<link rel="stylesheet" href="components/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="components/vuetify/vuetify.min.css">-->
@@ -45,13 +45,19 @@
 
 
     <script src="components/tsukuyomi/tsukuyomi-messages.js"></script>
+<<<<<<< Updated upstream
     <!--<script src="components/vue-i18n/vue-i18n.js"></script>
     <script src="components/dexiejs/dexie.min.js"></script>-->
 
     <script src="https://cdn.jsdelivr.net/npm/vue-i18n@8.22.2/dist/vue-i18n.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dexie@3.0.3/dist/dexie.min.js"></script>
 
-    <script src="components/tsukuyomi/tsukuyomi-func.js"></script>
+    <script src="components/tsukuyomi/tsukuyomi.js"></script>
+=======
+    <script src="components/vue-i18n/vue-i18n.js"></script>
+    <script src="components/dexiejs/dexie.min.js"></script>
+    <script src="components/tsukuyomi/tsukuyomi.js"></script>
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -63,7 +69,7 @@
                     <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
                 <v-app-bar-nav-icon v-if="isIndexPage" @click="drawer = !drawer"></v-app-bar-nav-icon>
-                <v-toolbar-title>{{title}}</v-toolbar-title>                
+                <v-toolbar-title>{{title}}</v-toolbar-title>
             </v-app-bar>
             <!--left menu-->
             <v-navigation-drawer v-model="drawer" app temporary>
@@ -154,18 +160,22 @@
             </v-main>
             <!--bottom-navigation-->
             <v-bottom-navigation app color="#F57F17" shift>
-              <v-btn to="/new">
-                <span>{{$t("bottomNav.newEvent")}}</span>
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-              <v-btn to="/">
-                <span>{{$t("bottomNav.home")}}</span>
-                <v-icon>mdi-home</v-icon>
-              </v-btn>
-              <v-btn to="/timeline">
-                <span>{{$t("bottomNav.timeline")}}</span>
-                <v-icon>mdi-timeline</v-icon>
-              </v-btn>
+                <v-btn to="/new">
+                    <span>{{$t("bottomNav.newEvent")}}</span>
+                    <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <v-btn to="/">
+                    <span>{{$t("bottomNav.home")}}</span>
+                    <v-icon>mdi-home</v-icon>
+                </v-btn>
+                <v-btn to="/timeline">
+                    <span>{{$t("bottomNav.timeline")}}</span>
+                    <v-icon>mdi-timeline</v-icon>
+                </v-btn>
+                <v-btn to="/calendar">
+                    <span>{{$t("bottomNav.calendar")}}</span>
+                    <v-icon>mdi-calendar</v-icon>
+                </v-btn>
             </v-bottom-navigation>
         </v-app>
     </div>
@@ -203,7 +213,9 @@
         //passed events page
         { path: "/past", component: httpVueLoader("./pages/past.vue") },
         //manage page
-        {path: "/manage", component:httpVueLoader("./pages/manage.vue")},
+        { path: "/manage", component: httpVueLoader("./pages/manage.vue") },
+        //calendar page
+        { path: "/calendar", component: httpVueLoader("./pages/calendar.vue") },
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]
@@ -228,9 +240,9 @@
         vuetify: new Vuetify(),
         data: {
             "drawer": false,
-            "installable":null,
-            "title":"TSUKUYOMI",
-            "isIndexPage":true
+            "installable": null,
+            "title": "TSUKUYOMI",
+            "isIndexPage": true
         },
         created: function () {
             //set darkmode setting
@@ -256,9 +268,9 @@
                 router.replace("/alert")
             }
             const self = this;
-            setTimeout(function(){
+            setTimeout(function () {
                 self.installable = tsukuyomi_pwa_prompt !== null;
-            },2000);
+            }, 2000);
         },
         watch: {
             //watch $vuetify.theme.dark to save darkmode setting
@@ -266,25 +278,25 @@
                 localStorage.setItem("tsukuyomi-theme-dark", setting);
 
                 const themeColorEl = document.getElementById("tsukuyomi-theme-color");
-                if(setting === true){
-                    themeColorEl.setAttribute("content","#272727");
-                }else{
+                if (setting === true) {
+                    themeColorEl.setAttribute("content", "#272727");
+                } else {
                     themeColorEl.setAttribute("content", "#f5f5f5");
                 }
             },
-            '$route':function(to){
-                if(to.path === "/"){
+            '$route': function (to) {
+                if (to.path === "/") {
                     this.isIndexPage = true;
-                }else{
+                } else {
                     this.isIndexPage = false;
                 }
             }
         },
-        methods:{
-            pwaInstall(){
+        methods: {
+            pwaInstall() {
                 tsukuyomi.pwaInstall();
             },
-            goBack(){
+            goBack() {
                 this.$router.go(-1);
             }
         }

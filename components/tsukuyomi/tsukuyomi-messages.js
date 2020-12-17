@@ -17,7 +17,8 @@ const messages = {
         bottomNav:{
             newEvent:"New",
             home:"Home",
-            timeline:"Timeline"
+            timeline:"Timeline",
+            calendar:"Calendar"
         },
         card: {
             dayleft: {
@@ -146,7 +147,8 @@ const messages = {
         bottomNav:{
             newEvent:"新規作成",
             home:"ホーム",
-            timeline:"タイムライン"
+            timeline:"タイムライン",
+            calendar:"カレンダー"
         },
         card: {
             dayleft: {

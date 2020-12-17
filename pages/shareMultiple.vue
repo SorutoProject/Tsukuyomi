@@ -66,13 +66,8 @@ module.exports = {
     tsukuyomi.app.changeTitle(this.$t("shareMultiple.title"));
 
     //Get events from DB
-    const db = new Dexie("Tsukuyomi_events");
-    db.version(1).stores({
-      events: "title",
-    });
-
     const self = this;
-    db.events
+    tsukuyomi.db.events
       .orderBy("title")
       .sortBy("date")
       .then((events) => {

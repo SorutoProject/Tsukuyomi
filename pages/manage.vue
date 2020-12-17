@@ -35,12 +35,7 @@ module.exports = {
         const reader = new FileReader();
         reader.onload = function () {
           //Add to database
-          const db = new Dexie("Tsukuyomi_events");
-          db.version(1).stores({
-            events: "title",
-          });
-
-          db.events.bulkPut(JSON.parse(reader.result));
+          tsukuyomi.db.events.bulkPut(JSON.parse(reader.result));
           alert("Imported.");
         };
         reader.readAsText(file);
@@ -50,11 +45,7 @@ module.exports = {
     },
     dbExport() {
       //get all events from db
-      const db = new Dexie("Tsukuyomi_events");
-      db.version(1).stores({
-        events: "title",
-      });
-      db.events.toArray(function (events) {
+      tsukuyomi.db.events.toArray(function (events) {
         //download JSON
         const json = JSON.stringify(events);
         const a = document.createElement("a");

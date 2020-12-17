@@ -65,12 +65,7 @@ module.exports = {
       //Show Loading Animation Circle
       this.loading = true;
       //Save to IndexedDB
-      const db = new Dexie("Tsukuyomi_events");
-      db.version(1).stores({
-        events: "title"
-      });
-
-      db.events.bulkPut(this.newEvents)
+      tsukuyomi.db.events.bulkPut(this.newEvents)
         .then(() => {
           router.replace("/");
         })

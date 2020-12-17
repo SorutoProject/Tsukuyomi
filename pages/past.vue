@@ -43,13 +43,8 @@ module.exports = {
     //Update Title
     tsukuyomi.app.changeTitle(this.$t("past.title"));
     //Get events from DB
-    const db = new Dexie("Tsukuyomi_events");
-    db.version(1).stores({
-      events: "title",
-    });
-
     const self = this;
-    db.events
+    tsukuyomi.db.events
       .orderBy("title")
       .sortBy("date")
       .then((events) => {
