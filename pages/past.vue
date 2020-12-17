@@ -46,6 +46,7 @@ module.exports = {
     const self = this;
     tsukuyomi.db.events
       .orderBy("title")
+      .reverse()
       .sortBy("date")
       .then((events) => {
         //extract events only in the past
