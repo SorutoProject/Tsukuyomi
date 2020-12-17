@@ -49,7 +49,7 @@ module.exports = {
         //download JSON
         const json = JSON.stringify(events);
         const a = document.createElement("a");
-        const blob = new Blob([json], { type: "application/json" });
+        const blob = new Blob([json], { type: "application/octet-stream" });
         a.href = window.URL.createObjectURL(blob);
         const time = new Date().toISOString().split("T");
         a.download =
