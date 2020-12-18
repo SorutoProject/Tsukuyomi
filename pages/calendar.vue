@@ -35,7 +35,7 @@
         <v-toolbar flat>
           <v-toolbar-title>{{$t("calendar.cardDialog.title")}}</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon @click="cardDialog.isOpen = false" color="red">
+          <v-btn icon @click="cardDialog.isOpen = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-toolbar>
