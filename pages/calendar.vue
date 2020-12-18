@@ -15,6 +15,8 @@
           <v-toolbar-title v-if="$refs.calendar">
             &nbsp;{{ $refs.calendar.title }}
           </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn text outlined @click="focus = ''">TODAY</v-btn>
         </v-toolbar>
       </v-sheet>
       <v-sheet>
