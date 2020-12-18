@@ -23,7 +23,7 @@
           :events="events"
           color="primary"
           :event-color="getEventColor"
-          v-model="month"
+          v-model="focus"
           @click:event="showEvent"
         ></v-calendar>
       </v-sheet>
@@ -50,7 +50,8 @@ module.exports = {
     return {
       events: [],
       isPending: true,
-      month: null,
+      focus: "",
+      calendarTitle:"",
       cardDialog:{
         isOpen:false,
         eventTitle:"",
@@ -91,8 +92,6 @@ module.exports = {
       //get event title and date
       this.cardDialog.eventTitle = event.event.name;
       this.cardDialog.eventDate = event.day.date;
-
-      console.log(this.cardDialog)
 
       //show the dialog
       this.cardDialog.isOpen = true;
