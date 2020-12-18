@@ -65,6 +65,7 @@ const messages = {
                 title: "Confirm",
                 confirmText: "Add this event to your events list.",
                 cautionText: "If you are seeing this page through the link in external site, This event was created by others.<br>Save this event on your own responsibility.",
+                existText:"The title has already been used. It'll be overwritten if you continue.",
                 buttons: {
                     cancel: "cancel",
                     submit: "save"
@@ -74,6 +75,7 @@ const messages = {
                 title: "Share",
                 confirmText: "Add this event to your events list.",
                 cautionText: "This event was created by others.<br>Save this event on your own responsibility.",
+                existText:"The title has already been used. It'll be overwritten if you continue.",
                 invalidDateTitle: "Invalid Date",
                 invalidDateText: "You received an event with invalid date.",
                 buttons: {
@@ -205,6 +207,7 @@ const messages = {
                 title: "イベントの作成確認",
                 confirmText: "次のイベントを作成しますか？",
                 cautionText: "このページが外部サイトのリンクなどから表示された場合、このイベントは、他のユーザーが作成したものです。<br>このイベントを追加することによる損害などについて、開発者は一切の責任を負いません。",
+                existText:"すでに同じタイトルのイベントが存在しています。続行すると上書きされます。",
                 buttons: {
                     cancel: "キャンセル",
                     submit: "作成"
@@ -214,6 +217,7 @@ const messages = {
                 title: "イベントの共有",
                 confirmText: "次の共有されたイベントをイベントリストに追加しますか？",
                 cautionText: "このイベントは、他のユーザーが作成したものです。<br>このイベントを追加することによる損害などについて、開発者は一切の責任を負いません。",
+                existText:"すでに同じタイトルのイベントが存在しています。続行すると上書きされます。",
                 invalidDateTitle: "無効な日付",
                 invalidDateText: "無効な日付のイベントが共有されました。",
                 buttons: {

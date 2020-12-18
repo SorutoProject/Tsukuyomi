@@ -13,6 +13,7 @@
         class="text--secondary text-caption"
         v-html="$t('addConfirm.share.cautionText')"
       ></p>
+      <p class="red--text" v-if="newEvent.isExist">{{$t("addConfirm.share.existText")}}</p>
       <p>
         <v-btn to="/" text>
           {{ $t("addConfirm.share.buttons.cancel") }}
@@ -23,9 +24,11 @@
       </p>
     </div>
     <div v-if="!isPending && !validDate">
-      <p class="text-h5">{{$t("addConfirm.share.invalidDateTitle")}}</p>
-      <p>{{$t("addConfirm.share.invalidDateText")}}</p>
-      <p><v-btn to="/" replace><v-icon>mdi-home</v-icon> HOME</v-btn></p>
+      <p class="text-h5">{{ $t("addConfirm.share.invalidDateTitle") }}</p>
+      <p>{{ $t("addConfirm.share.invalidDateText") }}</p>
+      <p>
+        <v-btn to="/" replace><v-icon>mdi-home</v-icon> HOME</v-btn>
+      </p>
     </div>
     <div v-if="isPending" class="text-center">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -36,15 +39,27 @@
 module.exports = {
   data() {
     return {
-      isPending:true,
+      isPending: true,
       validDate: true,
       newEvent: {
         year: this.$route.params.yyyymmdd.split("-")[0],
         month: this.$route.params.yyyymmdd.split("-")[1],
         date: this.$route.params.yyyymmdd.split("-")[2],
         title: this.$route.params.title,
+        isExist:false
       },
     };
+  },
+  created() {
+    const self = this;
+    //check whether the same name event is exist
+    tsukuyomi.db.events.get(this.$route.params.title).then(function (event) {
+      if (event === undefined) {
+        self.newEvent.isExist = false;
+      } else {
+        self.newEvent.isExist = true;
+      }
+    });
   },
   mounted() {
     //Update Title
@@ -52,15 +67,14 @@ module.exports = {
 
     //console.log(tsukuyomi.isValidDate(this.$route.params.yyyymmdd))
     //check date valid
-    if(!tsukuyomi.isValidDate(this.$route.params.yyyymmdd)){
+    if (!tsukuyomi.isValidDate(this.$route.params.yyyymmdd)) {
       this.validDate = false;
       this.isPending = false;
       return;
-    }
-    else{
+    } else {
       this.validDate = true;
     }
-    console.log("pending")
+    console.log("pending");
     //check whether shared events has already registered.
     const self = this;
     tsukuyomi.db.events.get(this.newEvent.title).then(function (event) {
@@ -77,13 +91,14 @@ module.exports = {
             (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
           );
           //future
-          if(remainDayCount >= 0) router.replace(`/?highlight=${self.$route.params.title}`);
+          if (remainDayCount >= 0)
+            router.replace(`/?highlight=${self.$route.params.title}`);
           //past
           else router.replace(`/past?highlight=${self.$route.params.title}`);
-        }else{
+        } else {
           self.isPending = false;
         }
-      }else{
+      } else {
         self.isPending = false;
       }
     });
