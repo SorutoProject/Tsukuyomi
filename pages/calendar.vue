@@ -23,7 +23,7 @@
         <v-calendar
           ref="calendar"
           :events="events"
-          color="primary"
+          color="orange lighten-1"
           :event-color="getEventColor"
           v-model="focus"
           @click:event="showEvent"
