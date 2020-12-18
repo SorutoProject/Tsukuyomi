@@ -132,7 +132,10 @@ const messages = {
             }
         },
         calendar: {
-            title: "Calendar"
+            title: "Calendar",
+            cardDialog:{
+                title:"Details"
+            }
         }
 
     },
@@ -183,7 +186,7 @@ const messages = {
         index: {
             newEvent: "新しいイベントを作成",
             eventListText: "イベントリスト",
-            noEventsFoundText: "登録されているイベントはありません"
+            noEventsFoundText: "イベントはありません"
         },
         embed: {
             notInFrameText: "このページはiframe内でのみ有効です。"
@@ -241,7 +244,7 @@ const messages = {
         },
         shareMultiple: {
             title: "まとめて共有",
-            noEventsFoundText: "登録されているイベントはありません",
+            noEventsFoundText: "イベントはありません",
             urlCopied: "URLをコピーしました",
             noSelected: "少なくとも1つ以上のイベントを選択してください",
             buttons: {
@@ -254,7 +257,7 @@ const messages = {
             title: "タイムライン",
             today: "今日",
             days: "日後",
-            noEventsFoundText: "登録されているイベントはありません"
+            noEventsFoundText: "イベントはありません"
         },
         past: {
             title: "過去のイベント",
@@ -269,7 +272,10 @@ const messages = {
             }
         },
         calendar: {
-            title: "カレンダー"
+            title: "カレンダー",
+            cardDialog:{
+                title:"イベントの詳細"
+            }
         }
     }
 }
