@@ -21,12 +21,27 @@
         <v-calendar
           ref="calendar"
           :events="events"
+          color="primary"
           :event-color="getEventColor"
           v-model="month"
-          
+          @click:event="showEvent"
         ></v-calendar>
       </v-sheet>
     </div>
+    <v-dialog v-if="cardDialog.isOpen" v-model="cardDialog.isOpen" width="400">
+      <v-card>
+        <v-toolbar flat>
+          <v-toolbar-title>{{$t("calendar.cardDialog.title")}}</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn icon @click="cardDialog.isOpen = false" color="red">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <v-card-text>
+          <tsukuyomi-card :title="cardDialog.eventTitle" :date="cardDialog.eventDate" elevation="0" sharable="true" removable="true"></tsukuyomi-card>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -36,6 +51,11 @@ module.exports = {
       events: [],
       isPending: true,
       month: null,
+      cardDialog:{
+        isOpen:false,
+        eventTitle:"",
+        eventDate:""
+      }
     };
   },
   created() {
@@ -67,6 +87,16 @@ module.exports = {
     getEventColor(event) {
       return event.color;
     },
+    showEvent(event){
+      //get event title and date
+      this.cardDialog.eventTitle = event.event.name;
+      this.cardDialog.eventDate = event.day.date;
+
+      console.log(this.cardDialog)
+
+      //show the dialog
+      this.cardDialog.isOpen = true;
+    }
   },
 };
 </script>
