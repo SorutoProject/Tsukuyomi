@@ -149,14 +149,14 @@ module.exports = {
       );
     };
     calclateDayCount();
-    //Calclate how many days every a second
+    //Calclate how many days every 0.5s
     this.updateDayCountTimer = setInterval(function () {
       calclateDayCount();
-    }, 1000);
+    }, 500);
   },
   destroyed() {
     clearInterval(this.updateDayCountTimer);
-  },
+  }
 };
 </script>
 <style>
