@@ -195,11 +195,11 @@
         //share confirm page(lagacy)
         { path: "/add/:yyyymmdd/:title/share", redirect: "/s/:yyyymmdd/:title" },
         //sharing confirm page
-        { path: "/s/:yyyymmdd/:title/", component: httpVueLoader("./pages/shareConfirm.vue") },
+        { path: "/s/:yyyymmdd/:title", component: httpVueLoader("./pages/shareConfirm.vue") },
         //sharing multiple confirm page
         { path: "/sm/:eventsSet", component: httpVueLoader("./pages/shareMultipleConfirm.vue") },
         //sharing page
-        { path: "/share/:yyyymmdd/:title/", component: httpVueLoader("./pages/share.vue") },
+        { path: "/share/:yyyymmdd/:title", component: httpVueLoader("./pages/share.vue") },
         //multiple sharing page
         { path: "/share-multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
         //sharing multiple page
@@ -209,7 +209,7 @@
         //alert to change browser
         { path: "/alert", component: httpVueLoader("./pages/alert.vue") },
         //embed card
-        { path: "/embed/:yyyymmdd/:title/", component: httpVueLoader("./pages/embed.vue") },
+        { path: "/embed/:yyyymmdd/:title", component: httpVueLoader("./pages/embed.vue") },
         //about page
         { path: "/about", component: httpVueLoader("./pages/about.vue") },
         //timeline page
@@ -220,6 +220,8 @@
         { path: "/manage", component: httpVueLoader("./pages/manage.vue") },
         //calendar page
         { path: "/calendar", component: httpVueLoader("./pages/calendar.vue") },
+        //edit page
+        { path:"/edit/:yyyymmdd/:title", component: httpVueLoader("./pages/edit.vue")},
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]

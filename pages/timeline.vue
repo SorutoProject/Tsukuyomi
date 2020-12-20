@@ -20,6 +20,7 @@
             elevation="0"
             sharable="true"
             removable="true"
+            editable="true"
           ></tsukuyomi-card>
         </v-timeline-item>
       </v-timeline>

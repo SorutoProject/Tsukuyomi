@@ -40,7 +40,7 @@
           </v-btn>
         </v-toolbar>
         <v-card-text>
-          <tsukuyomi-card :title="cardDialog.eventTitle" :date="cardDialog.eventDate" elevation="0" sharable="true" removable="true"></tsukuyomi-card>
+          <tsukuyomi-card :title="cardDialog.eventTitle" :date="cardDialog.eventDate" elevation="0" sharable="true" removable="true" editable="true"></tsukuyomi-card>
         </v-card-text>
       </v-card>
     </v-dialog>

@@ -48,6 +48,9 @@
           <v-btn text v-if="addable" :href="addURL" target="_blank">
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
+          <v-btn icon v-if="editable" :to="'/edit/' + date + '/' + title">
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
           <v-btn
             text
             v-if="checkable"
@@ -107,6 +110,7 @@ module.exports = {
     "elevation",
     "addable",
     "checkable",
+    "editable"
   ],
   data() {
     this.$i18n.locale = userLang;

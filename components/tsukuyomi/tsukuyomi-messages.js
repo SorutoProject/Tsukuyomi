@@ -60,6 +60,15 @@ const messages = {
             startDateText: "Start in:",
             submitText: "Next"
         },
+        edit: {
+            title: "Edit",
+            titleTextBox: {
+                label: "Title",
+                placeholder: "Ex) The School Festival"
+            },
+            startDateText: "Start in:",
+            submitText: "Save"
+        },
         addConfirm: {
             add: {
                 title: "Confirm",
@@ -201,6 +210,15 @@ const messages = {
             },
             startDateText: "イベント開始日",
             submitText: "イベントを作成"
+        },
+        edit: {
+            title: "イベントの編集",
+            titleTextBox: {
+                label: "イベントの名称",
+                placeholder: "例：文化祭"
+            },
+            startDateText: "イベント開始日",
+            submitText: "変更を保存"
         },
         addConfirm: {
             add: {

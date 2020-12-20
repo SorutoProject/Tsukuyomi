@@ -19,6 +19,8 @@
             :title="event.title"
             :date="event.date"
             removable="true"
+            sharable="true"
+            editable="true"
           ></tsukuyomi-card>
         </v-col>
       </v-row>
