@@ -77,6 +77,9 @@
         >
           <v-icon>mdi-facebook</v-icon>
         </v-btn>
+        <v-btn icon x-large @click="shareInOtherApp" v-if="shareAPIAvailable">
+          <v-icon>mdi-dots-horizontal</v-icon>
+        </v-btn>
       </div>
       <div>
         <p class="text--secondary">{{ $t("share.or") }}</p>
@@ -104,6 +107,8 @@ module.exports = {
       shareURLEncoded: "",
 
       LINEShareURL: "",
+
+      shareAPIAvailable: 'share' in navigator,
 
       copied: false,
       tagCopied: false,
@@ -223,6 +228,16 @@ module.exports = {
       //show copied message
       this.tagCopied = true;
     },
+
+    shareInOtherApp(){
+      if('share' in navigator){
+        navigator.share({
+          title:this.event.title,
+          message: "Manage this event with TSUKUYOMI!",
+          url: this.shareURL
+        });
+      }
+    }
   },
 };
 </script>
