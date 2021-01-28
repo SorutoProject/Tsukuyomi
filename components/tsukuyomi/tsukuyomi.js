@@ -28,6 +28,14 @@ const tsukuyomi = {
     const result = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
     return "#0000" + result.slice(0,2);
   },
+  generateId: function(length = 16){
+    const str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ0123456789"
+    let id = "";
+    for(let i = 0; i < length; i++){
+      id+= str[Math.floor(Math.random() * str.length)];
+    }
+    return id;
+  },
   app: {
     changeTitle: function (title) {
       app.title = title;
@@ -46,6 +54,6 @@ const tsukuyomi = {
 }
 
 //Init DB
-tsukuyomi.db.version(1).stores({
-  events: "title"
+tsukuyomi.db.version(2).stores({
+  events: "id"
 });

@@ -5,6 +5,7 @@
       :data-checked="checked"
       :data-date="date"
       :data-title="title"
+      :data-id="id"
       class="tsukuyomi-card"
     >
       <div v-if="!removed">
@@ -42,13 +43,13 @@
           >
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          <v-btn icon v-if="sharable" :to="'/share/' + date + '/' + title">
+          <v-btn icon v-if="sharable" :to="'/share/' + id">
             <v-icon>mdi-share-variant</v-icon>
           </v-btn>
           <v-btn text v-if="addable" :href="addURL" target="_blank">
             <v-icon>mdi-plus</v-icon> {{ $t("card.addText") }}
           </v-btn>
-          <v-btn icon v-if="editable" :to="'/edit/' + date + '/' + title">
+          <v-btn icon v-if="editable" :to="'/edit/' + id">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
           <v-btn
@@ -105,6 +106,7 @@ module.exports = {
   props: [
     "title",
     "date",
+    "id",
     "removable",
     "sharable",
     "elevation",
@@ -137,7 +139,7 @@ module.exports = {
       this.removed = true;
 
       //Remove from the DB
-      tsukuyomi.db.events.delete(this.title);
+      tsukuyomi.db.events.delete(this.id);
     },
   },
   mounted() {

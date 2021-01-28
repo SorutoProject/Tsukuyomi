@@ -15,6 +15,7 @@
         >
         <v-timeline-item small>
           <tsukuyomi-card
+            :id="event.id"
             :title="event.title"
             :date="event.date"
             elevation="0"
@@ -48,7 +49,7 @@ module.exports = {
     //Get events from DB
     const self = this;
     tsukuyomi.db.events
-      .orderBy("title")
+      .orderBy("id")
       .sortBy("date")
       .then((events) => {
         //extract events only in the future

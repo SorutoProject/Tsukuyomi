@@ -74,6 +74,7 @@ module.exports = {
         eventDate.setHours(0, 0, 0);
         //make template for the calendar
         const calendarEvent = {
+          id:event.id,
           name: event.title,
           start: eventDate,
           timed: false,

@@ -68,7 +68,7 @@ module.exports = {
     //Get events from DB
     const self = this;
     tsukuyomi.db.events
-      .orderBy("title")
+      .orderBy("id")
       .sortBy("date")
       .then((events) => {
         //extract events only in the future

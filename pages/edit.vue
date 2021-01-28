@@ -38,8 +38,9 @@ module.exports = {
   data() {
     return {
       event: {
-        title: this.$route.params.title,
-        date: this.$route.params.yyyymmdd,
+        id:this.$route.params.id,
+        title: "",
+        date: ""
       },
       today: "",
       userLang: navigator.language,
@@ -49,9 +50,12 @@ module.exports = {
   created() {
     //Check the event exists
     const self = this;
-    tsukuyomi.db.events.get(this.$route.params.title).then((event) => {
+    tsukuyomi.db.events.get(this.$route.params.id).then((event) => {
       if (event === undefined) {
         self.$router.replace("/");
+      }else{
+        self.event.title = event.title;
+        self.event.date = event.date;
       }
     });
   },
@@ -74,12 +78,13 @@ module.exports = {
   methods: {
     submit() {
       //delete old event
-      tsukuyomi.db.events.delete(this.$route.params.title);
+      tsukuyomi.db.events.delete(this.$route.params.id);
       //Save to IndexedDB
       tsukuyomi.db.events
         .put({
           title: this.event.title,
           date: this.event.date,
+          id: this.event.id
         })
         .then(() => {
           router.replace("/");

@@ -1,13 +1,14 @@
 <template>
   <div>
     <div v-if="existEvent">
-      <span class="text--secondary">{{$t("share.subtext")}}</span>
+      <span class="text--secondary">{{ $t("share.subtext") }}</span>
       <tsukuyomi-card
-        :title="this.$route.params.title"
-        :date="this.$route.params.yyyymmdd"
+        :id="event.id"
+        :title="event.title"
+        :date="event.date"
         elevation="0"
       ></tsukuyomi-card>
-      <p>{{$t("share.shareWithText")}}</p>
+      <p>{{ $t("share.shareWithText") }}</p>
       <div>
         <!--copy-->
         <v-btn icon x-large v-on:click="copyURL">
@@ -17,7 +18,7 @@
 
         <!--copied snackbar-->
         <v-snackbar v-model="copied" timeout="3000">
-          {{$t("share.urlCopied")}}
+          {{ $t("share.urlCopied") }}
         </v-snackbar>
 
         <!--copy-->
@@ -28,16 +29,11 @@
 
         <!--copied snackbar-->
         <v-snackbar v-model="tagCopied" timeout="3000">
-          {{$t("share.embedHtmlCopied")}}
+          {{ $t("share.embedHtmlCopied") }}
         </v-snackbar>
 
         <!--LINE-->
-        <v-btn
-          icon
-          x-large
-          :href="LINEShareURL"
-          target="_blank"
-        >
+        <v-btn icon x-large :href="LINEShareURL" target="_blank">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -83,9 +79,9 @@
         </v-btn>
       </div>
       <div>
-        <p class="text--secondary">{{$t("share.or")}}</p>
+        <p class="text--secondary">{{ $t("share.or") }}</p>
         <v-btn text :href="gCalendarURL" target="_blank">
-          <v-icon>mdi-calendar</v-icon>　{{$t("share.shareWithGCal")}}
+          <v-icon>mdi-calendar</v-icon>　{{ $t("share.shareWithGCal") }}
         </v-btn>
       </div>
     </div>
@@ -93,9 +89,9 @@
       <p class="text-h5">
         <v-btn icon elevation="0" to="/" text>
           <v-icon>mdi-arrow-left</v-icon> </v-btn
-        >　{{$t("share.errorText")}}
+        >　{{ $t("share.errorText") }}
       </p>
-      <p>{{$t("share.errorSubtext")}}</p>
+      <p>{{ $t("share.errorSubtext") }}</p>
     </div>
   </div>
 </template>
@@ -103,48 +99,83 @@
 module.exports = {
   data() {
     return {
-      shareURL:
-        new URL("./", location.href).href +
-        "#/s/" +
-        this.$route.params.yyyymmdd +
-        "/" +
-        encodeURIComponent(this.$route.params.title),
-      embedURL:
-        new URL("./", location.href).href +
-        "#/embed/" +
-        this.$route.params.yyyymmdd +
-        "/" +
-        encodeURIComponent(this.$route.params.title),
-      shareURLEncoded: encodeURIComponent(
-        new URL("./", location.href).href +
-          "#/s/" +
-          this.$route.params.yyyymmdd +
-          "/" +
-          encodeURIComponent(this.$route.params.title)
-      ),
+      shareURL: "",
+      embedURL: "",
+      shareURLEncoded: "",
 
-      LINEShareURL:
-        "https://social-plugins.line.me/lineit/share?url=" +
-        encodeURIComponent(
-          new URL("./", location.href).href +
-            "?openExternalBrowser=1#/s/" +
-            this.$route.params.yyyymmdd +
-            "/" +
-            encodeURIComponent(this.$route.params.title)
-        ),
+      LINEShareURL: "",
 
       copied: false,
       tagCopied: false,
       gCalendarURL: "",
       existEvent: true,
+      event: {
+        id: this.$route.params.id,
+        title: "",
+        date: "",
+      },
     };
   },
   created() {
     //Check the event is exist
     const self = this;
-    tsukuyomi.db.events.get(this.$route.params.title).then((event) => {
+    tsukuyomi.db.events.get(this.$route.params.id).then((event) => {
       if (event !== undefined) {
         self.existEvent = true;
+        self.event.title = event.title;
+        self.event.date = event.date;
+        //console.log(self.event);
+
+        //update share urls
+        self.shareURL =
+          new URL("./", location.href).href +
+          "#/s/" +
+          self.event.date +
+          "/" +
+          encodeURIComponent(self.event.title);
+
+        self.embedURL =
+          new URL("./", location.href).href +
+          "#/embed/" +
+          self.event.date +
+          "/" +
+          encodeURIComponent(self.event.title);
+
+        self.shareURLEncoded = encodeURIComponent(
+          new URL("./", location.href).href +
+            "#/s/" +
+            self.event.date +
+            "/" +
+            encodeURIComponent(self.event.title)
+        );
+
+        self.LINEShareURL =
+          "https://social-plugins.line.me/lineit/share?url=" +
+          encodeURIComponent(
+            new URL("./", location.href).href +
+              "?openExternalBrowser=1#/s/" +
+              self.event.date +
+              "/" +
+              encodeURIComponent(self.event.title)
+          );
+
+        //Create google calendar url
+
+        const zerofill = function (num) {
+          return ("0" + num).slice(-2);
+        };
+        //get UTC
+        const date = new Date(this.event.date);
+        const utc =
+          date.getUTCFullYear() +
+          zerofill(date.getUTCMonth() + 1) +
+          zerofill(date.getUTCDate()) +
+          "T" +
+          zerofill(date.getUTCHours()) +
+          zerofill(date.getUTCMinutes()) +
+          zerofill(date.getUTCSeconds()) +
+          "Z";
+        this.gCalendarURL = `https://www.google.com/calendar/event?action=TEMPLATE&text=${this.event.title}&dates=${utc}/${utc}&trp=false`;
       } else {
         self.existEvent = false;
       }
@@ -153,23 +184,6 @@ module.exports = {
   mounted() {
     //Update Title
     tsukuyomi.app.changeTitle(this.$t("share.title"));
-    //Create google calendar url
-
-    const zerofill = function (num) {
-      return ("0" + num).slice(-2);
-    };
-    //get UTC
-    const date = new Date(this.$route.params.yyyymmdd);
-    const utc =
-      date.getUTCFullYear() +
-      zerofill(date.getUTCMonth() + 1) +
-      zerofill(date.getUTCDate()) +
-      "T" +
-      zerofill(date.getUTCHours()) +
-      zerofill(date.getUTCMinutes()) +
-      zerofill(date.getUTCSeconds()) +
-      "Z";
-    this.gCalendarURL = `https://www.google.com/calendar/event?action=TEMPLATE&text=${this.$route.params.title}&dates=${utc}/${utc}&trp=false`;
   },
   methods: {
     copyURL() {
@@ -208,7 +222,7 @@ module.exports = {
 
       //show copied message
       this.tagCopied = true;
-    }
-  }
+    },
+  },
 };
 </script>

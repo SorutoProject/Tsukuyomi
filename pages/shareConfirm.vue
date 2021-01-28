@@ -75,7 +75,7 @@ module.exports = {
       this.validDate = true;
     }
     console.log("pending");
-    //check whether shared events has already registered.
+    /*//check whether shared events has already registered.
     const self = this;
     tsukuyomi.db.events.get(this.newEvent.title).then(function (event) {
       if (event !== undefined) {
@@ -101,20 +101,18 @@ module.exports = {
       } else {
         self.isPending = false;
       }
-    });
+    });*/
+    this.isPending = false;
   },
   methods: {
     applyEvent() {
       //Save to IndexedDB
-      const db = new Dexie("Tsukuyomi_events");
-      db.version(1).stores({
-        events: "title",
-      });
 
-      db.events
+      tsukuyomi.db.events
         .put({
           title: this.newEvent.title,
           date: `${this.newEvent.year}-${this.newEvent.month}-${this.newEvent.date}`,
+          id: tsukuyomi.generateId(),
         })
         .then(() => {
           router.replace("/");

@@ -3,7 +3,7 @@
     <p>{{ $t("app.description") }}</p>
     <p><img style="height:36px;" src="./tsukuyomi-logo_v2.svg"></p>
     <p class="text--secondary text-caption">
-      &copy; 2020 Soruto Project<br />Licensed under the MIT.
+      &copy; 2020-2021 Soruto Project<br />Licensed under the MIT.
     </p>
     <p>
       <v-btn

@@ -116,12 +116,12 @@
                             </v-list-item-icon>
                             <v-list-item-title>{{$t("menu.past")}}</v-list-item-title>
                         </v-list-item>
-                        <v-list-item to="/calendar">
+                        <!--<v-list-item to="/calendar">
                             <v-list-item-icon>
                                 <v-icon>mdi-calendar</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>{{$t("menu.calendar")}}</v-list-item-title>
-                        </v-list-item>
+                        </v-list-item>-->
                         <v-divider></v-divider>
                         <v-list-item to="/share-multiple">
                             <v-list-item-icon>
@@ -176,10 +176,10 @@
                     <span>{{$t("bottomNav.timeline")}}</span>
                     <v-icon>mdi-timeline</v-icon>
                 </v-btn>
-                <v-btn to="/calendar">
+                <!--<v-btn to="/calendar">
                     <span>{{$t("bottomNav.calendar")}}</span>
                     <v-icon>mdi-calendar</v-icon>
-                </v-btn>
+                </v-btn>-->
             </v-bottom-navigation>
         </v-app>
     </div>
@@ -199,7 +199,7 @@
         //sharing multiple confirm page
         { path: "/sm/:eventsSet", component: httpVueLoader("./pages/shareMultipleConfirm.vue") },
         //sharing page
-        { path: "/share/:yyyymmdd/:title", component: httpVueLoader("./pages/share.vue") },
+        { path: "/share/:id", component: httpVueLoader("./pages/share.vue") },
         //multiple sharing page
         { path: "/share-multiple", component: httpVueLoader("./pages/shareMultiple.vue") },
         //sharing multiple page
@@ -219,9 +219,9 @@
         //manage page
         { path: "/manage", component: httpVueLoader("./pages/manage.vue") },
         //calendar page
-        { path: "/calendar", component: httpVueLoader("./pages/calendar.vue") },
+        //{ path: "/calendar", component: httpVueLoader("./pages/calendar.vue") },
         //edit page
-        { path:"/edit/:yyyymmdd/:title", component: httpVueLoader("./pages/edit.vue")},
+        { path:"/edit/:id", component: httpVueLoader("./pages/edit.vue")},
         //error page
         { path: "*", component: httpVueLoader("./pages/invalid.vue") },
     ]

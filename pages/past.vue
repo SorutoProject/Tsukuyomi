@@ -16,6 +16,7 @@
           xl="3"
         >
           <tsukuyomi-card
+            :id="event.id"
             :title="event.title"
             :date="event.date"
             removable="true"
@@ -47,7 +48,7 @@ module.exports = {
     //Get events from DB
     const self = this;
     tsukuyomi.db.events
-      .orderBy("title")
+      .orderBy("id")
       .reverse()
       .sortBy("date")
       .then((events) => {
@@ -84,10 +85,10 @@ module.exports = {
       });
   },
   methods:{
-    highlightCard(title) {
+    highlightCard(id) {
       //get card element that has the "title" given as argument
       const targetCard = document.querySelector(
-        `.tsukuyomi-card[data-title="${title}"]`
+        `.tsukuyomi-card[data-id="${title}"]`
       );
       if (targetCard !== null) {
         //highlight the card

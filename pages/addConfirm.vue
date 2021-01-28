@@ -6,7 +6,6 @@
             <p>イベント開始日：{{newEvent.year}}年{{newEvent.month}}月{{newEvent.date}}日</p>-->
             <tsukuyomi-card :title="newEvent.title" :date="this.$route.params.yyyymmdd" elevation="0"></tsukuyomi-card>
             <p class="text--secondary text-caption" v-html="$t('addConfirm.add.cautionText')"></p>
-            <p class="red--text" v-if="newEvent.isExist">{{$t("addConfirm.add.existText")}}</p>
             <p>
                 <v-btn to="/new" text>
                     {{$t("addConfirm.add.buttons.cancel")}}
@@ -33,14 +32,6 @@ module.exports = {
     },
     created(){
         const self = this;
-        //check whether the same name event is exist
-        tsukuyomi.db.events.get(this.$route.params.title).then(function(event){
-            if(event === undefined){
-                self.newEvent.isExist = false;
-            }else{
-                self.newEvent.isExist = true;
-            }
-        });
     },
     mounted(){
         //Update Title
@@ -50,6 +41,7 @@ module.exports = {
         applyEvent(){
             //Save to IndexedDB
             tsukuyomi.db.events.put({
+                id:tsukuyomi.generateId(),
                 title: this.newEvent.title,
                 date: `${this.newEvent.year}-${this.newEvent.month}-${this.newEvent.date}`
             })

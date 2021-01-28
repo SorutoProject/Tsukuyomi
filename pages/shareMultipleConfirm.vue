@@ -54,7 +54,8 @@ module.exports = {
     for(let i = 0; i < eventsSet.length; i = i+2){
       const event = {
         date:eventsSet[i],
-        title:eventsSet[i+1]
+        title:eventsSet[i+1],
+        id:tsukuyomi.generateId()
       }
       events.push(event);
     }
